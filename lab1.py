@@ -1,7 +1,7 @@
-from vpython import *
+GlowScript 2.9 VPython
 
 """constants"""
-M = 0.06
+M = 0.3
 eq = vector(0,-6,0)
 k = pi**2
 t = 0
@@ -28,10 +28,9 @@ while (n <= 80):
     else:
         da  = box(pos = vector(1.5,-1.02-0.1*n,0),axis = vector(1,0,0), size = vector(0.3,-0.04,0.1),color = color.black)
     n = n + 1
-"""motion of spring"""
-while(t < 15000000):
+while(t < 150000):
 
-    rate(23000)
+    rate(100000)
     mass.pos = mass.velocity*dt + mass.pos
     mass.velocity = (k/M)*(eq - mass.pos) * dt + mass.velocity
     spring.axis = -spring.pos + mass.pos
