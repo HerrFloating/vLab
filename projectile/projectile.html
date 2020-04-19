@@ -13,7 +13,7 @@
 // START JAVASCRIPT
 ;(function() {;
 var RS_modules = {};
-var mass, running, W1, t, spring;
+var mass, running, W1, t, spring, ground;
 RS_modules.pythonize = {};
 
 (function(){
@@ -49,7 +49,7 @@ RS_modules.pythonize = {};
     RS_modules.pythonize.strings = strings;
 })();
 async function __main__() {
-    var version, box, sphere, simple_sphere, cylinder, pyramid, cone, helix, ellipsoid, ring, arrow, compound, display, vector, print, arange, __name__, type, scene, RS_ls, alpha, beta, g, t, dt, M, v_0, theta, scene1, mass, running, alpha_in, beta_in, v, theta1, W1, W2, W3, phi, t1, s, k;
+    var version, box, sphere, simple_sphere, cylinder, pyramid, cone, helix, ellipsoid, ring, arrow, compound, display, vector, print, arange, __name__, type, scene, RS_ls, alpha, beta, g, t, dt, M, v_0, theta, scene1, mass, ground, running, alpha_in, beta_in, v, theta1, W1, W2, W3, phi, t1, s, k;
     version = RS_list_decorate([ "2.9", "glowscript" ]);
     Array.prototype['+']=function(r) {return this.concat(r)}
     Array.prototype['*']=function(r) {return __array_times_number(this, r)}
@@ -96,16 +96,21 @@ async function __main__() {
     "15";
     mass = RS_interpolate_kwargs.call(this, sphere, [RS_desugar_kwargs({pos: vector(0, 10, 0), velocity: vector(v_0["*"](cos(radians(theta))), v_0["*"](sin(radians(theta))), 0), radius: .5, color: color.blue, make_trail: false})]);
     "17";
+    ground = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(mass.pos.x, 0, 0), axis: vector(5, 0, 0), radius: .1, color: color.black})]);
+    "19";
     running = false;
-    "18";
+    "20";
     async function Run(b) {
-        "19";
-        "20";
-        running = !running;
         "21";
+        "22";
+        running = !running;
+        "23";
         if (running) {
+            "24";
             b.text = "Pause";
+            "25";
         } else {
+            "26";
             b.text = "Run";
         }
     };
@@ -114,35 +119,37 @@ async function __main__() {
         __module__ : {value: null}
     });
 
-    "23";
+    "27";
     RS_interpolate_kwargs.call(this, button, [RS_desugar_kwargs({text: "Run", bind: Run})]);
-    "25";
+    "29";
     async function Reset(c) {
-        "26";
-        "27";
-        t = 0;
-        "28";
-        mass.pos = vector(0, 10, 0);
-        "29";
-        mass.velocity = vector(v_0["*"](cos(radians(theta))), v_0["*"](sin(radians(theta))), 0);
         "30";
-        mass.clear_trail();
         "31";
+        t = 0;
+        "32";
+        mass.pos = vector(0, 10, 0);
+        "33";
+        mass.velocity = vector(v_0["*"](cos(radians(theta))), v_0["*"](sin(radians(theta))), 0);
+        "34";
+        mass.clear_trail();
+        "35";
         W1.text = "Elapsed time : 0";
+        "36";
+        ground.pos.x = mass.pos.x;
     };
     if (!Reset.__argnames__) Object.defineProperties(Reset, {
         __argnames__ : {value: ["c"]},
         __module__ : {value: null}
     });
 
-    "32";
+    "37";
     RS_interpolate_kwargs.call(this, button, [RS_desugar_kwargs({text: "Reset", bind: Reset})]);
-    "33";
+    "38";
     scene1.append_to_caption("\n\n");
     ;(await sleep(.2));
-    "35";
+    "40";
     async function T(s) {
-        "36";
+        "41";
     };
     if (!T.__argnames__) Object.defineProperties(T, {
         __argnames__ : {value: ["s"]},
@@ -150,62 +157,62 @@ async function __main__() {
     });
 
     ;(await sleep(.2));
-    "37";
+    "42";
     alpha_in = RS_interpolate_kwargs.call(this, winput, [RS_desugar_kwargs({bind: T, prompt: "Enter alpha and beta (\\(\\alpha \\, v^{\\beta}\\)) :", text: "0", number: 0})]);
     ;(await sleep(.2));
     ;(await sleep(.2));
-    "39";
+    "44";
     beta_in = RS_interpolate_kwargs.call(this, winput, [RS_desugar_kwargs({bind: T, text: "0", number: 0})]);
-    "40";
+    "45";
     scene1.append_to_caption("\n\n");
     ;(await sleep(.2));
-    "41";
+    "46";
     v = RS_interpolate_kwargs.call(this, winput, [RS_desugar_kwargs({bind: T, prompt: "Enter \\(v_0\\) and \\(\\theta\\) in degrees  :", text: "2", number: 2})]);
     ;(await sleep(.2));
-    "42";
-    theta1 = RS_interpolate_kwargs.call(this, winput, [RS_desugar_kwargs({bind: T, text: "30", number: 30})]);
-    "43";
-    MathJax.Hub.Queue(RS_list_decorate([ "Typeset", MathJax.Hub ]));
-    "44";
-    scene1.append_to_caption("\n\n");
-    "46";
-    W1 = RS_interpolate_kwargs.call(this, wtext, [RS_desugar_kwargs({text: "Elapsed time : 0"})]);
     "47";
-    scene1.append_to_caption("\n\n");
+    theta1 = RS_interpolate_kwargs.call(this, winput, [RS_desugar_kwargs({bind: T, text: "30", number: 30})]);
     "48";
-    W2 = RS_interpolate_kwargs.call(this, wtext, [RS_desugar_kwargs({text: "x component : "})]);
+    MathJax.Hub.Queue(RS_list_decorate([ "Typeset", MathJax.Hub ]));
     "49";
-    W3 = RS_interpolate_kwargs.call(this, wtext, [RS_desugar_kwargs({text: "y component : "})]);
+    scene1.append_to_caption("\n\n");
     "51";
+    W1 = RS_interpolate_kwargs.call(this, wtext, [RS_desugar_kwargs({text: "Elapsed time : 0"})]);
+    "52";
+    scene1.append_to_caption("\n\n");
+    "53";
+    W2 = RS_interpolate_kwargs.call(this, wtext, [RS_desugar_kwargs({text: "x component : "})]);
+    "54";
+    W3 = RS_interpolate_kwargs.call(this, wtext, [RS_desugar_kwargs({text: "y component : "})]);
+    "56";
     async function down() {
-        "52";
-        "53";
+        "57";
+        "58";
         mass.make_trail = false;
-        "54";
+        "59";
         mass.pos.x = scene1.mouse.pos.x;
-        "55";
+        "60";
         mass.pos.y = scene1.mouse.pos.y;
-        "56";
+        "61";
         drag = true;
     };
     if (!down.__module__) Object.defineProperties(down, {
         __module__ : {value: null}
     });
 
-    "58";
+    "63";
     async function move() {
-        "59";
-        "60";
+        "64";
+        "65";
         if (drag) {
-            "61";
+            "66";
             mass.make_trail = false;
-            "62";
+            "67";
             mass.pos.x = scene1.mouse.pos.x;
-            "63";
+            "68";
             mass.pos.y = scene1.mouse.pos.y;
-            "64";
+            "69";
             mass.color = color.red;
-            "65";
+            "70";
             mass.make_trail = false;
         }
     };
@@ -213,102 +220,104 @@ async function __main__() {
         __module__ : {value: null}
     });
 
-    "67";
+    "72";
     async function up() {
-        "68";
-        "69";
+        "73";
+        "74";
         mass.color = color.blue;
-        "70";
+        "75";
         mass.make_trail = false;
-        "71";
+        "76";
         drag = false;
     };
     if (!up.__module__) Object.defineProperties(up, {
         __module__ : {value: null}
     });
 
-    "72";
+    "77";
     while (true) {
-        "73";
-        scene1.bind("mousedown", down);
-        "75";
-        scene1.bind("mousemove", move);
-        "77";
-        scene1.bind("mouseup", up);
         "78";
-        W2.text = ["x Component : ", scene1.mouse.pos.x];
+        ground.axis.x = mass.pos.x;
         "79";
+        scene1.bind("mousedown", down);
+        "81";
+        scene1.bind("mousemove", move);
+        "83";
+        scene1.bind("mouseup", up);
+        "84";
+        W2.text = ["x Component : ", scene1.mouse.pos.x];
+        "85";
         W3.text = ["y Component : ", scene1.mouse.pos.y];
-        "80";
+        "86";
         if ((t === 0 || typeof t === "object" && RS_equals(t, 0))) {
-            "81";
-            alpha_in.disabled = false;
-            "82";
-            beta_in.disabled = false;
-            "83";
-            v.disabled = false;
-            "84";
-            theta1.disabled = false;
-            "85";
-            v_0 = v.number;
-            "86";
-            theta = theta1.number;
             "87";
-            alpha = alpha_in.number;
+            alpha_in.disabled = false;
             "88";
-            beta = beta_in.number;
+            beta_in.disabled = false;
             "89";
-            mass.velocity.x = v_0["*"](cos(radians(theta)));
+            v.disabled = false;
             "90";
+            theta1.disabled = false;
+            "91";
+            v_0 = v.number;
+            "92";
+            theta = theta1.number;
+            "93";
+            alpha = alpha_in.number;
+            "94";
+            beta = beta_in.number;
+            "95";
+            mass.velocity.x = v_0["*"](cos(radians(theta)));
+            "96";
             mass.velocity.y = v_0["*"](sin(radians(theta)));
         }
-        "91";
+        "97";
         ;(await rate(1e3));
-        "92";
+        "98";
         if (running && mass.pos.y[">="](0)) {
-            "93";
-            alpha_in.disabled = true;
-            "94";
-            beta_in.disabled = true;
-            "95";
-            v.disabled = true;
-            "96";
-            theta1.disabled = true;
-            "97";
-            phi = atan(mass.velocity.y["/"](mass.velocity.x));
-            "98";
-            mass.make_trail = true;
             "99";
-            mass.pos = mass.velocity["*"](dt)["+"](mass.pos);
+            alpha_in.disabled = true;
             "100";
-            mass.velocity = alpha["/"](M)["-u"]()["*"](GS_power(mass.velocity.mag, 2))["*"](vector(cos(phi), sin(phi), 0))["-"](g["*"](vector(0, 1, 0)))["*"](dt)["+"](mass.velocity);
+            beta_in.disabled = true;
             "101";
+            v.disabled = true;
+            "102";
+            theta1.disabled = true;
+            "103";
+            phi = atan(mass.velocity.y["/"](mass.velocity.x));
+            "104";
+            mass.make_trail = true;
+            "105";
+            mass.pos = mass.velocity["*"](dt)["+"](mass.pos);
+            "106";
+            mass.velocity = alpha["/"](M)["-u"]()["*"](GS_power(mass.velocity.mag, 2))["*"](vector(cos(phi), sin(phi), 0))["-"](g["*"](vector(0, 1, 0)))["*"](dt)["+"](mass.velocity);
+            "107";
             t = t["+"](dt);
             "Timer";
-            "103";
+            "109";
             t1 = str(t);
-            "104";
+            "110";
             s = t1.find(".");
-            "105";
+            "111";
             t1 = t1.slice(0, s["+"](3));
-            "106";
+            "112";
             W1.text = ["Elapsed time :", t1];
         }
-        "107";
+        "113";
         k = keysdown();
-        "108";
+        "114";
         if (RS_in("up", k)) {
             scene1.center = scene1.center["+"](vector(0, .001, 0));
         }
-        "109";
+        "115";
         if (RS_in("down", k)) {
             scene1.center = scene1.center["+"](vector(0, .001["-u"](), 0));
         }
-        "110";
+        "116";
         if (RS_in("left", k)) {
             scene1.center = scene1.center["+"](vector(.001["-u"](), 0, 0));
         }
-        "111";
+        "117";
         if (RS_in("right", k)) {
             scene1.center = scene1.center["+"](vector(.001, 0, 0));
         }
