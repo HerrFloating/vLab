@@ -48,7 +48,7 @@ RS_modules.pythonize = {};
     RS_modules.pythonize.strings = strings;
 })();
 async function __main__() {
-    var version, box, sphere, simple_sphere, cylinder, pyramid, cone, helix, ellipsoid, ring, arrow, compound, display, vector, print, arange, __name__, type, scene, RS_ls, k1, M1, m, eq, t, dt, scene1, mass, mass1, t1, mass2, t2, mass3, t3, mass4, t4, mass5, t5, v, paye1, sh, s, pich1, roof, sh1, s1, pich2, roof1, E1, E2, b1, b2, b3, b4, ground, spring, rul, a, L, d, n, running, r1, r2, gravity, g, W1, Error, i, k;
+    var version, box, sphere, simple_sphere, cylinder, pyramid, cone, helix, ellipsoid, ring, arrow, compound, display, vector, print, arange, __name__, type, scene, RS_ls, k1, M1, m, eq, t, dt, scene1, mass, mass1e, t1, mass1, mass2e, t2, mass2, mass3e, t3, mass3, mass4e, t4, mass4, mass5e, t5, mass5, v, rul, c, a, L, d, n, ruller, i, paye1, sh, s, pich1, roof, sh1, s1, pich2, roof1, E1, E2, b1, b2, b3, b4, ground, spring, S, running, r1, r2, gravity, g, W1, Error, k;
     version = RS_list_decorate([ "2.9", "glowscript" ]);
     Array.prototype['+']=function(r) {return this.concat(r)}
     Array.prototype['*']=function(r) {return __array_times_number(this, r)}
@@ -95,201 +95,357 @@ async function __main__() {
     "14";
     mass = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: eq, axis: vector(1, 0, 0), size: vector(.01, .01, .01), velocity: vector(0, 0, 0), visible: false, pickable: false})]);
     "16";
-    mass1 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(5["-u"](), 19["-u"](), 0), axis: vector(0, 1.5["-u"](), 0), radius: .8, color: vector(229["/"](255), 137["/"](255), 57["/"](255))})]);
+    mass1e = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(5["-u"](), 19["-u"](), 0), axis: vector(0, 1.5["-u"](), 0), radius: .8, color: vector(229["/"](255), 137["/"](255), 57["/"](255))})]);
     "17";
-    t1 = RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: mass1.pos["+"](vector(0, .75["-u"](), 1)), color: color.black, text: "50 g", height: .3, depth: 0})]);
+    t1 = RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: mass1e.pos["+"](vector(0, .75["-u"](), 1)), color: color.black, text: "50 g", height: .3, depth: 0})]);
     "18";
-    mass1 = compound(RS_list_decorate([ mass1, t1 ]));
+    mass1 = compound(RS_list_decorate([ mass1e, t1 ]));
     "19";
-    mass1.pos.z = 0;
+    mass1e.visible = false;
     "20";
-    mass1.mass = .05;
+    t1.visible = false;
     "21";
-    mass2 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(7["-u"](), 19["-u"](), 0), axis: vector(0, 1.3["-u"](), 0), radius: .8, color: vector(229["/"](255), 123["/"](255), 57["/"](255))})]);
+    t1 = undefined;
     "22";
-    t2 = RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: mass2.pos["+"](vector(0, 1.3["-u"]()["/"](2), 1)), color: color.black, text: "40 g", height: .3, depth: 0})]);
+    mass1e = undefined;
     "23";
-    mass2 = compound(RS_list_decorate([ mass2, t2 ]));
+    mass1.pos.z = 0;
     "24";
-    mass2.pos.z = 0;
+    mass1.mass = .05;
     "25";
-    mass2.mass = .04;
+    mass2e = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(7["-u"](), 19["-u"](), 0), axis: vector(0, 1.3["-u"](), 0), radius: .8, color: vector(229["/"](255), 123["/"](255), 57["/"](255))})]);
     "26";
-    mass3 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(9["-u"](), 19["-u"](), 0), axis: vector(0, 1.1["-u"](), 0), radius: .8, color: vector(229["/"](255), 109["/"](255), 57["/"](255))})]);
+    t2 = RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: mass2e.pos["+"](vector(0, 1.3["-u"]()["/"](2), 1)), color: color.black, text: "40 g", height: .3, depth: 0})]);
     "27";
-    t3 = RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: mass3.pos["+"](vector(0, 1.1["-u"]()["/"](2), 1)), color: color.black, text: "30 g", height: .3, depth: 0})]);
+    mass2 = compound(RS_list_decorate([ mass2e, t2 ]));
     "28";
-    mass3 = compound(RS_list_decorate([ mass3, t3 ]));
+    mass2e.visible = false;
     "29";
-    mass3.pos.z = 0;
+    t2.visible = false;
     "30";
-    mass3.mass = .03;
+    mass2e = undefined;
     "31";
-    mass4 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(11["-u"](), 19["-u"](), 0), axis: vector(0, .9["-u"](), 0), radius: .8, color: vector(229["/"](255), 91["/"](255), 57["/"](255))})]);
+    t2 = undefined;
     "32";
-    t4 = RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: mass4.pos["+"](vector(0, .9["-u"]()["/"](2), 1)), color: color.black, text: "20 g", height: .3, depth: 0})]);
+    mass2.pos.z = 0;
     "33";
-    mass4 = compound(RS_list_decorate([ mass4, t4 ]));
+    mass2.mass = .04;
     "34";
-    mass4.pos.z = 0;
+    mass3e = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(9["-u"](), 19["-u"](), 0), axis: vector(0, 1.1["-u"](), 0), radius: .8, color: vector(229["/"](255), 109["/"](255), 57["/"](255))})]);
     "35";
-    mass4.mass = .02;
+    t3 = RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: mass3e.pos["+"](vector(0, 1.1["-u"]()["/"](2), 1)), color: color.black, text: "30 g", height: .3, depth: 0})]);
     "36";
-    mass5 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(13["-u"](), 19["-u"](), 0), axis: vector(0, .7["-u"](), 0), radius: .8, color: vector(229["/"](255), 57["/"](255), 57["/"](255))})]);
+    mass3 = compound(RS_list_decorate([ mass3e, t3 ]));
     "37";
-    t5 = RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: mass5.pos["+"](vector(0, .7["-u"]()["/"](2), 1)), color: color.black, text: "10 g", height: .3, depth: 0})]);
+    mass3e.visible = false;
     "38";
-    mass5 = compound(RS_list_decorate([ mass5, t5 ]));
+    t3.visible = false;
     "39";
-    mass5.pos.z = 0;
+    mass3e = undefined;
     "40";
-    mass5.mass = .01;
+    t3 = undefined;
     "41";
-    v = RS_interpolate_kwargs.call(this, arrow, [RS_desugar_kwargs({pos: vector(4["-u"](), 0, 0), axis: vector(3.5, 0, 0), shaftwidth: .1, length: 2, visible: false, color: color.red})]);
+    mass3.pos.z = 0;
+    "42";
+    mass3.mass = .03;
     "43";
-    paye1 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(9.5, 1, 0), radius: .2, axis: vector(0, 19["-u"](), 0), color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
+    mass4e = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(11["-u"](), 19["-u"](), 0), axis: vector(0, .9["-u"](), 0), radius: .8, color: vector(229["/"](255), 91["/"](255), 57["/"](255))})]);
     "44";
-    sh = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(9.5, 0, .2), axis: vector(0, 1, 0), size: vector(.6, 1, .1), color: color.black, pickable: false})]);
+    t4 = RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: mass4e.pos["+"](vector(0, .9["-u"]()["/"](2), 1)), color: color.black, text: "20 g", height: .3, depth: 0})]);
     "45";
-    s = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(10, .1, 0), axis: vector(.5, 0, 0), radius: .1, color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
+    mass4 = compound(RS_list_decorate([ mass4e, t4 ]));
     "46";
-    pich1 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(10.5, .1, 0), axis: vector(.1, 0, 0), radius: .2, pickable: false})]);
+    mass4e.visible = false;
     "47";
-    roof = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(.5["-u"](), .1, 0), axis: vector(9.5, 0, 0), radius: .1, color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
+    t4.visible = false;
     "48";
-    sh1 = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(9.5, 2["-u"](), .2), axis: vector(0, 1, 0), size: vector(.6, 1, .1), color: color.black, pickable: false})]);
+    mass4e = undefined;
     "49";
-    s1 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(10, 1.9["-u"](), 0), axis: vector(.5, 0, 0), radius: .1, color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
+    t4 = undefined;
     "50";
-    pich2 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(10.5, 1.9["-u"](), 0), axis: vector(.1, 0, 0), radius: .2})]);
+    mass4.pos.z = 0;
     "51";
-    roof1 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(3.1, 1.9["-u"](), 0), axis: vector(7.4, 0, 0), radius: .06, color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
+    mass4.mass = .02;
     "52";
-    E1 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(2.75, 1.9["-u"](), 0), axis: vector(3.1, 0, 0), radius: .06, color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
+    mass5e = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(13["-u"](), 19["-u"](), 0), axis: vector(0, .7["-u"](), 0), radius: .8, color: vector(229["/"](255), 57["/"](255), 57["/"](255))})]);
     "53";
-    E2 = RS_interpolate_kwargs.call(this, extrusion, [RS_desugar_kwargs({path: await RS_interpolate_kwargs.call(paths, paths.arc, [RS_desugar_kwargs({radius: .5, angle2: pi})]), color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false, shape: RS_list_decorate([ RS_list_decorate([ await RS_interpolate_kwargs.call(shapes, shapes.circle, [RS_desugar_kwargs({pos: RS_list_decorate([ 0, 0 ]), radius: .06})]) ]) ])})]);
+    t5 = RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: mass5e.pos["+"](vector(0, .7["-u"]()["/"](2), 1)), color: color.black, text: "10 g", height: .3, depth: 0})]);
+    "54";
+    mass5 = compound(RS_list_decorate([ mass5e, t5 ]));
     "55";
-    E2.axis = vector(0, 0, 1);
+    mass5e.visible = false;
     "56";
-    E2.pos = vector(2.9, 0, 1.9);
+    t5.visible = false;
     "57";
-    await RS_interpolate_kwargs.call(E2, E2.rotate, [RS_desugar_kwargs({angle: pi["/"](2), axis: vec(1, 0, 0), origin: vector(0, 0, 0)})]);
+    mass5e = undefined;
+    "58";
+    t5 = undefined;
+    "59";
+    mass5.pos.z = 0;
     "60";
-    b1 = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(2.4, 1.9["-u"]()["-"](.56)["+"](.03), .1), axis: vector(1, 0, 0), size: vector(.6, .1, .1), color: vector(178["/"](255), 62["/"](255), 62["/"](255)), pickable: false})]);
+    mass5.mass = .01;
     "61";
-    b2 = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(2.4, 1.9["-u"]()["-"](.56)["+"](1.03), .1), axis: vector(1, 0, 0), size: vector(.6, .1, .1), color: vector(178["/"](255), 62["/"](255), 62["/"](255)), pickable: false})]);
-    "62";
-    b3 = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(2.7, 1.9["-u"]()["-"](.56)["+"](.53), .1), axis: vector(1, 0, 0), size: vector(.1, .1, .1), color: vector(178["/"](255), 62["/"](255), 62["/"](255)), pickable: false})]);
+    v = RS_interpolate_kwargs.call(this, arrow, [RS_desugar_kwargs({pos: vector(4["-u"](), 0, 0), axis: vector(3.5, 0, 0), shaftwidth: .1, length: 2, visible: false, color: color.red})]);
     "63";
-    b4 = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.3, 1.9["-u"]()["-"](.56)["+"](.53), .1), axis: vector(1, 0, 0), size: vector(.1, .1, .1), color: vector(178["/"](255), 62["/"](255), 62["/"](255)), pickable: false})]);
+    eq.y = 8["-u"]();
     "64";
-    ground = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(4.2, 18.5["-u"](), 0), axis: vector(1, 0, 0), size: vector(14, .8, .1), color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
+    rul = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(2, 8.4["-u"](), 0), axis: vector(1, 0, 0), size: vector(1.3, 16.13, .1), color: vector(12["/"](255), 184["/"](255), 252["/"](255))})]);
     "65";
-    spring = RS_interpolate_kwargs.call(this, helix, [RS_desugar_kwargs({pos: vector(0, 0, 0), axis: vector(0, 8["-u"](), 0), radius: .8, coils: 15, color: color.gray(.1), thickness: .07})]);
+    c = vector(223["/"](255), 255["/"](255), 0["/"](255));
+    "66";
+    a = RS_list_decorate([ RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.7, .02["-u"]()["+"](eq.y), 0), axis: vector(1, 0, 0), size: vector(.7, .04["-u"](), .1), color: c})]) ]);
     "67";
-    rul = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(2, 8.4["-u"](), 0), axis: vector(1, 0, 0), size: vector(1.3, 16.13, .1), color: vector(12["/"](255), 244["/"](255), 252["/"](255)), pickable: false})]);
+    L = RS_list_decorate([ RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: vector(2.1, .2["-u"]()["+"](eq.y), .2), text: "0", height: .3, color: c, depth: 0})]) ]);
     "68";
-    a = RS_list_decorate([ RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.7, .02["-u"]()["-"](8.4), 0), axis: vector(1, 0, 0), size: vector(.7, .04["-u"](), .1), color: color.black, pickable: false})]) ]);
-    "69";
-    L = RS_list_decorate([ RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: vector(2.1, .2["-u"]()["-"](8.4), .1), text: "0", height: .3, color: color.black, depth: 0, pickable: false})]) ]);
-    "70";
-    for (var RS_Index1 = 1; RS_Index1["<"](8["*"](10)["+"](1)); RS_Index1++) {
+    for (var RS_Index1 = 1; RS_Index1["<"](eq.y["-u"]()["-"](.4)["*"](10)["+"](1)); RS_Index1++) {
         n = RS_Index1;
-        "71";
+        "69";
         if (RS_equals(n["%"](10), 0)) {
-            "72";
-            a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.7, .02["-u"]()["-"](8.4)["+"](n["*"](.1)), 0), axis: vector(1, 0, 0), size: vector(.7, .04["-u"](), .1), color: color.black, pickable: false})]));
-            "73";
+            "70";
+            a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.7, .02["-u"]()["+"](eq.y)["+"](n["*"](.1)), 0), axis: vector(1, 0, 0), size: vector(.7, .04["-u"](), .1), color: c})]));
+            "71";
             d = n["*"](.1);
-            "74";
+            "72";
             d = str(d);
-            "75";
-            L.append(RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: vector(2.1, .1["-u"]()["-"](8)["+"](n["*"](.1)), .1), text: d, height: .3, depth: 0, color: color.black, pickable: false})]));
-            "76";
+            "73";
+            L.append(RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: vector(2.1, .2["-u"]()["+"](eq.y)["+"](n["*"](.1)), .2), text: d, height: .3, color: c, depth: 0})]));
+            "74";
         } else if (RS_equals(n["%"](5), 0)) {
-            "77";
-            a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.6, .02["-u"]()["-"](8)["+"](n["*"](.1)), 0), axis: vector(1, 0, 0), size: vector(.5, .04["-u"](), .1), color: color.black, pickable: false})]));
-            "78";
+            "75";
+            a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.6, .02["-u"]()["+"](eq.y)["+"](n["*"](.1)), 0), axis: vector(1, 0, 0), size: vector(.5, .04["-u"](), .1), color: c})]));
+            "76";
         } else {
-            "79";
-            a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.5, .02["-u"]()["-"](8)["+"](.1["*"](n)), 0), axis: vector(1, 0, 0), size: vector(.3, .04["-u"](), .1), color: color.black, pickable: false})]));
+            "77";
+            a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.5, .02["-u"]()["+"](eq.y)["+"](.1["*"](n)), 0), axis: vector(1, 0, 0), size: vector(.3, .04["-u"](), .1), color: c})]));
         }
     }
-    "80";
-    for (var RS_Index2 = 1; RS_Index2["<"](16["-"](8)["*"](10)["+"](1)); RS_Index2++) {
+    "78";
+    for (var RS_Index2 = 1; RS_Index2["<"](16.4["+"](eq.y)["*"](10)["+"](1)); RS_Index2++) {
         n = RS_Index2;
-        "81";
+        "79";
         if (RS_equals(n["%"](10), 0)) {
-            "82";
-            a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.7, .02["-u"]()["-"](8)["-"](n["*"](.1)), 0), axis: vector(1, 0, 0), size: vector(.7, .04["-u"](), .1), color: color.black, pickable: false})]));
-            "83";
+            "80";
+            a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.7, .02["-u"]()["+"](eq.y)["-"](n["*"](.1)), 0), axis: vector(1, 0, 0), size: vector(.7, .04["-u"](), .1), color: c})]));
+            "81";
             d = n["*"](.1);
-            "84";
+            "82";
             d = str(d);
-            "85";
-            L.append(RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: vector(2.1, .1["-u"]()["-"](8)["-"](n["*"](.1)), .1), text: d, height: .3, depth: 0, color: color.black, pickable: false})]));
-            "86";
+            "83";
+            L.append(RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: vector(2.1, .2["-u"]()["+"](eq.y)["-"](n["*"](.1)), .2), text: d, height: .3, color: c, depth: 0})]));
+            "84";
         } else if (RS_equals(n["%"](5), 0)) {
-            "87";
-            a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.6, .02["-u"]()["-"](8)["-"](n["*"](.1)), 0), axis: vector(1, 0, 0), size: vector(.5, .04["-u"](), .1), color: color.black, pickable: false})]));
-            "88";
+            "85";
+            a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.6, .02["-u"]()["+"](eq.y)["-"](n["*"](.1)), 0), axis: vector(1, 0, 0), size: vector(.5, .04["-u"](), .1), color: c})]));
+            "86";
         } else {
-            "89";
-            a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.5, .02["-u"]()["-"](8)["-"](.1["*"](n)), 0), axis: vector(1, 0, 0), size: vector(.3, .04["-u"](), .1), color: color.black, pickable: false})]));
+            "87";
+            a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.5, .02["-u"]()["+"](eq.y)["-"](.1["*"](n)), 0), axis: vector(1, 0, 0), size: vector(.3, .04["-u"](), .1), color: c})]));
         }
+    }
+    "88";
+    ruller = compound(RS_list_decorate([ rul, a[0] ]));
+    "89";
+    var RS_Iter3 = range(1, len(a));
+    RS_Iter3 = ((typeof RS_Iter3[Symbol.iterator] === "function") ? (RS_Iter3 instanceof Map ? RS_Iter3.keys() : RS_Iter3) : Object.keys(RS_Iter3));
+    for (var RS_Index3 of RS_Iter3) {
+        i = RS_Index3;
+        "90";
+        ruller = compound(RS_list_decorate([ ruller, a[(typeof i === "number" && i["<"](0)) ? a.length["+"](i) : i] ]));
     }
     "91";
-    async function down() {
+    var RS_Iter4 = range(len(L));
+    RS_Iter4 = ((typeof RS_Iter4[Symbol.iterator] === "function") ? (RS_Iter4 instanceof Map ? RS_Iter4.keys() : RS_Iter4) : Object.keys(RS_Iter4));
+    for (var RS_Index4 of RS_Iter4) {
+        i = RS_Index4;
         "92";
-        "93";
+        ruller = compound(RS_list_decorate([ ruller, L[(typeof i === "number" && i["<"](0)) ? L.length["+"](i) : i] ]));
+    }
+    "93";
+    ruller.pickable = false;
+    "94";
+    rul.visible = false;
+    "95";
+    rul = undefined;
+    "96";
+    var RS_Iter5 = range(len(a));
+    RS_Iter5 = ((typeof RS_Iter5[Symbol.iterator] === "function") ? (RS_Iter5 instanceof Map ? RS_Iter5.keys() : RS_Iter5) : Object.keys(RS_Iter5));
+    for (var RS_Index5 of RS_Iter5) {
+        i = RS_Index5;
+        "97";
+        a[0].visible = false;
+        "98";
+        RS_delitem(a, 0);
+    }
+    "99";
+    var RS_Iter6 = range(len(L));
+    RS_Iter6 = ((typeof RS_Iter6[Symbol.iterator] === "function") ? (RS_Iter6 instanceof Map ? RS_Iter6.keys() : RS_Iter6) : Object.keys(RS_Iter6));
+    for (var RS_Index6 of RS_Iter6) {
+        i = RS_Index6;
+        "100";
+        L[0].visible;
+        "101";
+        RS_delitem(L, 0);
+    }
+    "103";
+    paye1 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(9.5, 1, 0), radius: .2, axis: vector(0, 19["-u"](), 0), color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
+    "104";
+    sh = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(9.5, 0, .2), axis: vector(0, 1, 0), size: vector(.6, 1, .1), color: color.black, pickable: false})]);
+    "105";
+    s = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(10, .1, 0), axis: vector(.5, 0, 0), radius: .1, color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
+    "106";
+    pich1 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(10.5, .1, 0), axis: vector(.1, 0, 0), radius: .2, pickable: false})]);
+    "107";
+    roof = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(.5["-u"](), .1, 0), axis: vector(9.5, 0, 0), radius: .1, color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
+    "108";
+    sh1 = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(9.5, 2["-u"](), .2), axis: vector(0, 1, 0), size: vector(.6, 1, .1), color: color.black, pickable: false})]);
+    "109";
+    s1 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(10, 1.9["-u"](), 0), axis: vector(.5, 0, 0), radius: .1, color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
+    "110";
+    pich2 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(10.5, 1.9["-u"](), 0), axis: vector(.1, 0, 0), radius: .2})]);
+    "111";
+    roof1 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(3.1, 1.9["-u"](), 0), axis: vector(7.4, 0, 0), radius: .06, color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
+    "112";
+    E1 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(2.75, 1.9["-u"](), 0), axis: vector(3.1, 0, 0), radius: .06, color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
+    "113";
+    E2 = RS_interpolate_kwargs.call(this, extrusion, [RS_desugar_kwargs({path: await RS_interpolate_kwargs.call(paths, paths.arc, [RS_desugar_kwargs({radius: .5, angle2: pi})]), color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false, shape: RS_list_decorate([ RS_list_decorate([ await RS_interpolate_kwargs.call(shapes, shapes.circle, [RS_desugar_kwargs({pos: RS_list_decorate([ 0, 0 ]), radius: .06})]) ]) ])})]);
+    "115";
+    E2.axis = vector(0, 0, 1);
+    "116";
+    E2.pos = vector(2.9, 0, 1.9);
+    "117";
+    await RS_interpolate_kwargs.call(E2, E2.rotate, [RS_desugar_kwargs({angle: pi["/"](2), axis: vec(1, 0, 0), origin: vector(0, 0, 0)})]);
+    "120";
+    b1 = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(2.4, 1.9["-u"]()["-"](.56)["+"](.03), .1), axis: vector(1, 0, 0), size: vector(.6, .1, .1), color: vector(178["/"](255), 62["/"](255), 62["/"](255)), pickable: false})]);
+    "121";
+    b2 = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(2.4, 1.9["-u"]()["-"](.56)["+"](1.03), .1), axis: vector(1, 0, 0), size: vector(.6, .1, .1), color: vector(178["/"](255), 62["/"](255), 62["/"](255)), pickable: false})]);
+    "122";
+    b3 = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(2.7, 1.9["-u"]()["-"](.56)["+"](.53), .1), axis: vector(1, 0, 0), size: vector(.1, .1, .1), color: vector(178["/"](255), 62["/"](255), 62["/"](255)), pickable: false})]);
+    "123";
+    b4 = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.3, 1.9["-u"]()["-"](.56)["+"](.53), .1), axis: vector(1, 0, 0), size: vector(.1, .1, .1), color: vector(178["/"](255), 62["/"](255), 62["/"](255)), pickable: false})]);
+    "124";
+    ground = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(4.2, 18.5["-u"](), 0), axis: vector(1, 0, 0), size: vector(14, .8, .1), color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
+    "125";
+    spring = RS_interpolate_kwargs.call(this, helix, [RS_desugar_kwargs({pos: vector(0, 0, 0), axis: vector(0, 8["-u"](), 0), radius: .8, coils: 15, color: color.gray(.1), thickness: .07})]);
+    "126";
+    S = compound(RS_list_decorate([ paye1, sh, s, pich1, roof, sh1, s1, pich2, roof1, E1, E2, b1, b2, b3, b4, ground ]));
+    "127";
+    S.pickable = false;
+    "128";
+    paye1.visible = false;
+    "129";
+    paye1 = undefined;
+    "130";
+    sh.visible = false;
+    "131";
+    sh = undefined;
+    "132";
+    s.visible = false;
+    "133";
+    s = undefined;
+    "134";
+    pich1.visible = false;
+    "135";
+    pich1 = undefined;
+    "136";
+    roof.visible = false;
+    "137";
+    roof = undefined;
+    "138";
+    sh1.visible = false;
+    "139";
+    sh1 = undefined;
+    "140";
+    s1.visible = false;
+    "141";
+    s1 = undefined;
+    "142";
+    pich2.visible = false;
+    "143";
+    pich2 = undefined;
+    "144";
+    roof1.visible = false;
+    "145";
+    roof1 = undefined;
+    "146";
+    E1.visible = false;
+    "147";
+    E1 = undefined;
+    "148";
+    E2.visible = false;
+    "149";
+    E2 = undefined;
+    "150";
+    b1.visible = false;
+    "151";
+    b1 = undefined;
+    "152";
+    b2.visible = false;
+    "153";
+    b2 = undefined;
+    "154";
+    b3.visible = false;
+    "155";
+    b3 = undefined;
+    "156";
+    b4.visible = false;
+    "157";
+    b4 = undefined;
+    "158";
+    ground.visible = false;
+    "159";
+    ground = undefined;
+    "161";
+    async function down() {
+        "162";
+        "163";
         obj = scene1.mouse.pick();
-        "94";
+        "164";
         drag = true;
     };
     if (!down.__module__) Object.defineProperties(down, {
         __module__ : {value: null}
     });
 
-    "96";
+    "166";
     async function move() {
         var RS_ls, running;
-        "97";
-        "98";
+        "167";
+        "168";
         if (drag) {
-            "99";
+            "169";
             if ((obj.pos.y !== eq.y && (typeof obj.pos.y !== "object" || RS_not_equals(obj.pos.y, eq.y))) && (obj.pos.x !== eq.x && (typeof obj.pos.x !== "object" || RS_not_equals(obj.pos.x, eq.x)))) {
-                "100";
+                "170";
                 obj.pos.x = scene1.mouse.pos.x;
-                "101";
+                "171";
                 obj.pos.y = scene1.mouse.pos.y;
-                "102";
+                "172";
             } else {
-                "103";
+                "173";
                 mass = obj;
-                "104";
+                "174";
                 M1 = obj.mass;
-                "105";
+                "175";
                 obj.pos.x = 0;
-                "106";
+                "176";
                 obj.pos.y = scene1.mouse.pos.y;
-                "107";
+                "177";
                 spring.axis = obj.pos;
-                "108";
+                "178";
                 obj.velocity = vector(0, 0, 0);
-                "109";
+                "179";
             }
             if (mass.pos.y[">"](.5["-u"]()) || mass.pos.y["<"](15.5["-u"]())) {
-                "110";
+                "180";
                 running = false;
-                "111";
+                "181";
                 Error.text = "Error: Mass position has to be between 0 and 15 .";
-                "112";
+                "182";
                 mass.pos.y = 10["-u"]();
-                "113";
+                "183";
                 spring.axis = mass.pos;
-                "114";
+                "184";
             } else {
-                "115";
+                "185";
                 Error.text = "No Error";
             }
         }
@@ -298,24 +454,24 @@ async function __main__() {
         __module__ : {value: null}
     });
 
-    "116";
+    "186";
     async function up() {
-        "117";
-        "119";
+        "187";
+        "189";
         drag = false;
     };
     if (!up.__module__) Object.defineProperties(up, {
         __module__ : {value: null}
     });
 
-    "121";
+    "191";
     running = false;
-    "122";
+    "192";
     async function Run(b) {
-        "123";
-        "124";
+        "193";
+        "194";
         running = !running;
-        "125";
+        "195";
         if (running) {
             b.text = "Pause";
         } else {
@@ -327,24 +483,24 @@ async function __main__() {
         __module__ : {value: null}
     });
 
-    "127";
+    "197";
     RS_interpolate_kwargs.call(this, button, [RS_desugar_kwargs({text: "Run", bind: Run})]);
-    "129";
+    "199";
     async function Clear(c) {
-        "130";
-        "131";
+        "200";
+        "201";
         t = 0;
-        "132";
+        "202";
         eq = vector(0, 8["-u"]()["-"](M1["+"](m["/"](2))["*"](g)["/"](k1)), 0);
-        "133";
+        "203";
         mass.pos = eq;
-        "134";
+        "204";
         spring.axis = mass.pos;
-        "135";
+        "205";
         mass.velocity = vector(0, 0, 0);
-        "136";
+        "206";
         v.visible = false;
-        "137";
+        "207";
         W1.text = "Elapsed time : 0";
     };
     if (!Clear.__argnames__) Object.defineProperties(Clear, {
@@ -352,36 +508,36 @@ async function __main__() {
         __module__ : {value: null}
     });
 
-    "138";
+    "208";
     RS_interpolate_kwargs.call(this, button, [RS_desugar_kwargs({text: "Clear", bind: Clear})]);
-    "140";
+    "210";
     async function Reset(c) {
-        "141";
-        "142";
+        "211";
+        "212";
         t = 0;
-        "143";
+        "213";
         M1 = 0;
-        "144";
+        "214";
         mass1.pos = vector(5["-u"](), 19.75["-u"](), 0);
-        "145";
+        "215";
         mass2.pos = vector(7["-u"](), 19.75["-u"](), 0);
-        "146";
+        "216";
         mass3.pos = vector(9["-u"](), 19.75["-u"](), 0);
-        "147";
+        "217";
         mass4.pos = vector(11["-u"](), 19.75["-u"](), 0);
-        "148";
+        "218";
         mass5.pos = vector(13["-u"](), 19.75["-u"](), 0);
-        "149";
+        "219";
         mass = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: eq, axis: vector(1, 0, 0), size: vector(.01, .01, .01), velocity: vector(0, 0, 0), visible: false})]);
-        "150";
+        "220";
         eq = vector(0, 8["-u"]()["-"](M1["+"](m["/"](2))["*"](g)["/"](k1)), 0);
-        "151";
+        "221";
         spring.axis = vector(0, eq.y, 0);
-        "152";
+        "222";
         mass.velocity = vector(0, 0, 0);
-        "153";
+        "223";
         v.visible = false;
-        "154";
+        "224";
         W1.text = "Elapsed time : 0";
     };
     if (!Reset.__argnames__) Object.defineProperties(Reset, {
@@ -389,35 +545,35 @@ async function __main__() {
         __module__ : {value: null}
     });
 
-    "155";
+    "225";
     RS_interpolate_kwargs.call(this, button, [RS_desugar_kwargs({text: "Reset", bind: Reset})]);
-    "156";
+    "226";
     scene1.append_to_caption("\n\n");
-    "158";
+    "228";
     async function Springs(c) {
-        "159";
-        "160";
+        "229";
+        "230";
         if ((r1.checked === true || typeof r1.checked === "object" && RS_equals(r1.checked, true))) {
-            "161";
+            "231";
             k1 = GS_power(pi, 2);
-            "162";
+            "232";
             spring.color = color.gray(.1);
-            "163";
+            "233";
             spring.radius = .8;
-            "164";
+            "234";
             spring.thickness = .1;
-            "165";
+            "235";
         }
         if ((r2.checked === true || typeof r2.checked === "object" && RS_equals(r2.checked, true))) {
-            "166";
+            "236";
             k1 = 2;
-            "167";
+            "237";
             spring.color = color.gray(.8);
-            "168";
+            "238";
             spring.radius = .6;
-            "169";
+            "239";
             spring.thickness = .05;
-            "170";
+            "240";
             r1.checked = false;
         }
     };
@@ -426,15 +582,15 @@ async function __main__() {
         __module__ : {value: null}
     });
 
-    "171";
+    "241";
     r1 = RS_interpolate_kwargs.call(this, radio, [RS_desugar_kwargs({bind: Springs, checked: true, text: "First Spring"})]);
-    "172";
+    "242";
     r2 = RS_interpolate_kwargs.call(this, radio, [RS_desugar_kwargs({bind: Springs, text: "Second Spring"})]);
-    "173";
+    "243";
     scene1.append_to_caption("\n\n");
-    "175";
+    "245";
     async function T1(s) {
-        "176";
+        "246";
     };
     if (!T1.__argnames__) Object.defineProperties(T1, {
         __argnames__ : {value: ["s"]},
@@ -442,167 +598,99 @@ async function __main__() {
     });
 
     ;(await sleep(.2));
-    "177";
+    "247";
     gravity = RS_interpolate_kwargs.call(this, winput, [RS_desugar_kwargs({bind: T1, prompt: "Enter g : (press ENTER)", text: "0", number: 0})]);
-    "178";
+    "248";
     g = gravity.number;
-    "179";
+    "249";
     scene1.append_to_caption("\n\n");
-    "181";
+    "251";
     W1 = RS_interpolate_kwargs.call(this, wtext, [RS_desugar_kwargs({text: "Elapsed time : 0"})]);
-    "182";
+    "252";
     scene1.append_to_caption("\n\n");
-    "184";
+    "254";
     Error = RS_interpolate_kwargs.call(this, wtext, [RS_desugar_kwargs({text: "No Error"})]);
-    "185";
+    "255";
     while (true) {
-        "186";
+        "256";
         scene1.bind("mousedown", down);
-        "188";
+        "258";
         scene1.bind("mousemove", move);
-        "190";
+        "260";
         scene1.bind("mouseup", up);
-        "192";
+        "262";
         if ((t === 0 || typeof t === "object" && RS_equals(t, 0))) {
-            "193";
+            "263";
             r1.disabled = false;
-            "194";
+            "264";
             r2.disabled = false;
-            "195";
+            "265";
             gravity.disabled = false;
-            "196";
+            "266";
             g = gravity.number;
-            "197";
+            "267";
             eq.y = 8["-u"]()["-"](M1["+"](m["/"](2))["*"](g)["/"](k1));
-            "198";
+            "268";
             if (eq.y["<"](10["-u"]())) {
-                "199";
+                "269";
                 Error.text = "Error : Change g";
-                "200";
+                "270";
                 eq.y = 8["-u"]();
-                "201";
+                "271";
             } else {
-                "202";
-                var RS_Iter3 = range(0, len(L));
-                RS_Iter3 = ((typeof RS_Iter3[Symbol.iterator] === "function") ? (RS_Iter3 instanceof Map ? RS_Iter3.keys() : RS_Iter3) : Object.keys(RS_Iter3));
-                for (var RS_Index3 of RS_Iter3) {
-                    i = RS_Index3;
-                    "203";
-                    L[0].visible = false;
-                    "204";
-                    RS_delitem(L, 0);
-                }
-                "205";
-                var RS_Iter4 = range(0, len(a));
-                RS_Iter4 = ((typeof RS_Iter4[Symbol.iterator] === "function") ? (RS_Iter4 instanceof Map ? RS_Iter4.keys() : RS_Iter4) : Object.keys(RS_Iter4));
-                for (var RS_Index4 of RS_Iter4) {
-                    i = RS_Index4;
-                    "206";
-                    a[0].visible = false;
-                    "207";
-                    RS_delitem(a, 0);
-                }
-                "208";
-                a = RS_list_decorate([ RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.7, .02["-u"]()["+"](eq.y), 0), axis: vector(1, 0, 0), size: vector(.7, .04["-u"](), .1), color: color.black, pickable: false})]) ]);
-                "209";
-                L = RS_list_decorate([ RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: vector(2.1, .2["-u"]()["+"](eq.y), .1), text: "0", height: .3, color: color.black, depth: 0, pickable: false})]) ]);
-                "210";
-                for (var RS_Index5 = 1; RS_Index5["<"](eq.y["-u"]()["-"](.4)["*"](10)["+"](1)); RS_Index5++) {
-                    n = RS_Index5;
-                    "211";
-                    if (RS_equals(n["%"](10), 0)) {
-                        "212";
-                        a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.7, .02["-u"]()["+"](eq.y)["+"](n["*"](.1)), 0), axis: vector(1, 0, 0), size: vector(.7, .04["-u"](), .1), color: color.black, pickable: false})]));
-                        "213";
-                        d = n["*"](.1);
-                        "214";
-                        d = str(d);
-                        "215";
-                        L.append(RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: vector(2.1, .2["-u"]()["+"](eq.y)["+"](n["*"](.1)), .1), text: d, height: .3, color: color.black, depth: 0, pickable: false})]));
-                        "216";
-                    } else if (RS_equals(n["%"](5), 0)) {
-                        "217";
-                        a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.6, .02["-u"]()["+"](eq.y)["+"](n["*"](.1)), 0), axis: vector(1, 0, 0), size: vector(.5, .04["-u"](), .1), color: color.black, pickable: false})]));
-                        "218";
-                    } else {
-                        "219";
-                        a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.5, .02["-u"]()["+"](eq.y)["+"](.1["*"](n)), 0), axis: vector(1, 0, 0), size: vector(.3, .04["-u"](), .1), color: color.black, pickable: false})]));
-                    }
-                }
-                "220";
-                for (var RS_Index6 = 1; RS_Index6["<"](16.4["+"](eq.y)["*"](10)["+"](1)); RS_Index6++) {
-                    n = RS_Index6;
-                    "221";
-                    if (RS_equals(n["%"](10), 0)) {
-                        "222";
-                        a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.7, .02["-u"]()["+"](eq.y)["-"](n["*"](.1)), 0), axis: vector(1, 0, 0), size: vector(.7, .04["-u"](), .1), color: color.black, pickable: false})]));
-                        "223";
-                        d = n["*"](.1);
-                        "224";
-                        d = str(d);
-                        "225";
-                        L.append(RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: vector(2.1, .2["-u"]()["+"](eq.y)["-"](n["*"](.1)), .1), text: d, height: .3, color: color.black, depth: 0, pickable: false})]));
-                        "226";
-                    } else if (RS_equals(n["%"](5), 0)) {
-                        "227";
-                        a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.6, .02["-u"]()["+"](eq.y)["-"](n["*"](.1)), 0), axis: vector(1, 0, 0), size: vector(.5, .04["-u"](), .1), color: color.black, pickable: false})]));
-                        "228";
-                    } else {
-                        "229";
-                        a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.5, .02["-u"]()["+"](eq.y)["-"](.1["*"](n)), 0), axis: vector(1, 0, 0), size: vector(.3, .04["-u"](), .1), color: color.black, pickable: false})]));
-                        "230";
-                    }
-                }
+                "272";
+                ruller.pos.y = eq.y["-"](.4);
+                "273";
             }
         } else {
-            "231";
+            "274";
             gravity.disabled = true;
-            "232";
+            "275";
             r1.disabled = true;
-            "233";
+            "276";
             r2.disabled = true;
         }
-        "235";
+        "278";
         ;(await rate(1e3));
-        "236";
+        "279";
         if (running) {
-            "237";
+            "280";
             mass.pos = mass.velocity["*"](dt)["+"](mass.pos);
-            "238";
+            "281";
             mass.velocity = k1["/"](M1["+"](m["/"](3)))["*"](eq["-"](mass.pos))["-"](g["*"](vector(0, 1, 0)))["*"](dt)["+"](mass.velocity);
-            "239";
+            "282";
             spring.axis = mass.pos;
-            "240";
+            "283";
             t = t["+"](dt);
-            "241";
+            "284";
             v.visible = true;
-            "242";
+            "285";
             v.pos = mass.pos;
             "Timer";
-            "244";
+            "287";
             t1 = str(t);
-            "245";
+            "288";
             s = t1.find(".");
-            "246";
+            "289";
             t1 = t1.slice(0, s["+"](3));
-            "247";
+            "290";
             W1.text = ["Elapsed time :", t1];
         }
-        "248";
+        "291";
         k = keysdown();
-        "249";
+        "292";
         if (RS_in("up", k)) {
             scene1.center = scene1.center["+"](vector(0, .01, 0));
         }
-        "250";
+        "293";
         if (RS_in("down", k)) {
             scene1.center = scene1.center["+"](vector(0, .01["-u"](), 0));
         }
-        "251";
+        "294";
         if (RS_in("left", k)) {
             scene1.center = scene1.center["+"](vector(.01["-u"](), 0, 0));
         }
-        "252";
+        "295";
         if (RS_in("right", k)) {
             scene1.center = scene1.center["+"](vector(.01, 0, 0));
         }

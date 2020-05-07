@@ -14,32 +14,92 @@ eq.y = -8-((M1+m/2)*g/k1)
 scene1 = canvas(center = vector(0,-8,0),background = color.white)
 mass = box(pos = eq,axis = vector(1,0,0),size=vector(0.01,0.01,0.01),velocity = vector(0,0,0),visible = False,pickable = False)
 """Masses"""
-mass1=cylinder(pos = vector(-5,-19,0),axis=vector(0,-1.5,0),radius = 0.8,color = vector(229/255,137/255,57/255))
-t1 = text(pos = mass1.pos + vector(0,-0.75,1),color=color.black,text = '50 g',height = 0.3 , depth=0)
-mass1 = compound([mass1,t1])
+mass1e=cylinder(pos = vector(-5,-19,0),axis=vector(0,-1.5,0),radius = 0.8,color = vector(229/255,137/255,57/255))
+t1 = text(pos = mass1e.pos + vector(0,-0.75,1),color=color.black,text = '50 g',height = 0.3 , depth=0)
+mass1 = compound([mass1e,t1])
+mass1e.visible = False
+t1.visible = False
+del t1
+del mass1e
 mass1.pos.z = 0
 mass1.mass = 0.05
-mass2=cylinder(pos = vector(-7,-19,0),axis=vector(0,-1.3,0),radius = 0.8,color = vector(229/255,123/255,57/255))
-t2 = text(pos = mass2.pos + vector(0,-1.3/2,1),color=color.black,text = '40 g',height = 0.3 , depth=0)
-mass2 = compound([mass2,t2])
+mass2e=cylinder(pos = vector(-7,-19,0),axis=vector(0,-1.3,0),radius = 0.8,color = vector(229/255,123/255,57/255))
+t2 = text(pos = mass2e.pos + vector(0,-1.3/2,1),color=color.black,text = '40 g',height = 0.3 , depth=0)
+mass2 = compound([mass2e,t2])
+mass2e.visible = False
+t2.visible = False
+del mass2e
+del t2
 mass2.pos.z=0
 mass2.mass = 0.04
-mass3=cylinder(pos = vector(-9,-19,0),axis=vector(0,-1.1,0),radius = 0.8,color = vector(229/255,109/255,57/255))
-t3 = text(pos = mass3.pos + vector(0,-1.1/2,1),color=color.black,text = '30 g',height = 0.3 , depth=0)
-mass3 = compound([mass3,t3])
+mass3e=cylinder(pos = vector(-9,-19,0),axis=vector(0,-1.1,0),radius = 0.8,color = vector(229/255,109/255,57/255))
+t3 = text(pos = mass3e.pos + vector(0,-1.1/2,1),color=color.black,text = '30 g',height = 0.3 , depth=0)
+mass3 = compound([mass3e,t3])
+mass3e.visible = False
+t3.visible = False
+del mass3e
+del t3
 mass3.pos.z=0
 mass3.mass = 0.03
-mass4=cylinder(pos = vector(-11,-19,0),axis=vector(0,-0.9,0),radius = 0.8,color = vector(229/255,91/255,57/255))
-t4 = text(pos = mass4.pos + vector(0,-0.9/2,1),color=color.black,text = '20 g',height = 0.3 , depth=0)
-mass4 = compound([mass4,t4])
+mass4e=cylinder(pos = vector(-11,-19,0),axis=vector(0,-0.9,0),radius = 0.8,color = vector(229/255,91/255,57/255))
+t4 = text(pos = mass4e.pos + vector(0,-0.9/2,1),color=color.black,text = '20 g',height = 0.3 , depth=0)
+mass4 = compound([mass4e,t4])
+mass4e.visible = False
+t4.visible = False
+del mass4e
+del t4
 mass4.pos.z = 0
 mass4.mass = 0.02
-mass5=cylinder(pos = vector(-13,-19,0),axis=vector(0,-0.7,0),radius = 0.8,color = vector(229/255,57/255,57/255))
-t5 = text(pos = mass5.pos + vector(0,-0.7/2,1),color=color.black,text = '10 g',height = 0.3 , depth=0)
-mass5 = compound([mass5,t5])
+mass5e=cylinder(pos = vector(-13,-19,0),axis=vector(0,-0.7,0),radius = 0.8,color = vector(229/255,57/255,57/255))
+t5 = text(pos = mass5e.pos + vector(0,-0.7/2,1),color=color.black,text = '10 g',height = 0.3 , depth=0)
+mass5 = compound([mass5e,t5])
+mass5e.visible = False
+t5.visible = False
+del mass5e
+del t5
 mass5.pos.z = 0
 mass5.mass = 0.01
 v = arrow(pos = vector(-4,0,0),axis = vector(3.5,0,0),shaftwidth = 0.1,length = 2,visible = False,color = color.red)
+"""ruler"""
+eq.y = -8
+rul = box(pos = vector(2,-8.4,0), axis = vector(1,0,0), size = vector(1.3,16.13,0.1),color = vector(12/255,184/255,252/255))
+c = vector(223/255,255/255,0/255)
+a = [box(pos = vector(1.7,(-0.02 + eq.y),0),axis = vector(1,0,0), size = vector(0.7,-0.04,0.1),color = c)]
+L = [text(pos = vector(2.1,(-0.2 + eq.y),0.2), text = '0', height = 0.3,color=c,depth =0)]
+for n in range(1,((-eq.y-0.4)*10)+1):
+    if n % 10 == 0:
+        a.append(box(pos = vector(1.7,(-0.02+eq.y)+n*0.1,0),axis = vector(1,0,0), size = vector(0.7,-0.04,0.1),color = c))
+        d = n*0.1
+        d = str(d)
+        L.append(text(pos = vector(2.1,-0.2+eq.y+n*0.1,0.2), text = d, height = 0.3,color=c,depth =0))
+    elif n % 5 ==0:
+        a.append(box(pos = vector(1.6,-0.02+eq.y+n*0.1,0),axis = vector(1,0,0), size = vector(0.5,-0.04,0.1),color = c))
+    else:
+        a.append(box(pos = vector(1.5,-0.02+eq.y+0.1*n,0),axis = vector(1,0,0), size = vector(0.3,-0.04,0.1),color = c))
+for n in range(1,(16.4 + eq.y)*10 + 1):
+    if n % 10 == 0:
+        a.append(box(pos = vector(1.7,(-0.02+eq.y)-n*0.1,0),axis = vector(1,0,0), size = vector(0.7,-0.04,0.1),color = c))
+        d = n*0.1
+        d = str(d)
+        L.append(text(pos = vector(2.1,-0.2+eq.y-n*0.1,0.2), text = d, height = 0.3,color=c,depth =0))
+    elif n % 5 ==0:
+        a.append(box(pos = vector(1.6,-0.02+eq.y-n*0.1,0),axis = vector(1,0,0), size = vector(0.5,-0.04,0.1),color = c))
+    else:
+        a.append(box(pos = vector(1.5,-0.02+eq.y-0.1*n,0),axis = vector(1,0,0), size = vector(0.3,-0.04,0.1),color = c))
+ruller = compound([rul,a[0]])
+for i in range(1,len(a)):
+    ruller = compound([ruller,a[i]])
+for i in range(len(L)):
+    ruller = compound([ruller,L[i]])
+ruller.pickable = False
+rul.visible = False
+del rul
+for i in range(len(a)):
+    a[0].visible = False
+    del a[0]
+for i in range(len(L)):
+    L[0].visible
+    del L[0]
 """paye"""
 paye1 = cylinder(pos =vector(9.5,1,0),radius = 0.2,axis = vector(0,-19,0), color=vector(229/255,229/255,229/255),pickable = False)
 sh= box(pos=vector(9.5,0,0.2),axis = vector(0,1,0),size = vector(0.6,1,0.1),color = color.black,pickable = False)
@@ -64,30 +124,40 @@ b3 = box(pos=vector(2.7,-1.9-.56+0.53,0.1),axis=vector(1,0,0),size=vector(0.1,0.
 b4 = box(pos=vector(1.3,-1.9-.56+0.53,0.1),axis=vector(1,0,0),size=vector(0.1,0.1,0.1),color=vector(178/255,62/255,62/255),pickable = False)
 ground = box(pos=vector(4.2,-18.5,0),axis = vector(1,0,0),size=vector(14,0.8,0.1),color=vector(229/255,229/255,229/255),pickable = False)
 spring = helix(pos = vector(0,0,0) , axis = vector(0,-8,0)   , radius = 0.8, coils = 15 , color = color.gray(0.1),thickness=0.07 )
-"""ruler"""
-rul = box(pos = vector(2,-8.4,0), axis = vector(1,0,0), size = vector(1.3,16.13,0.1),color = vector(12/255,244/255,252/255),pickable = False)
-a = [box(pos = vector(1.7,(-0.02 -8.4),0),axis = vector(1,0,0), size = vector(0.7,-0.04,0.1),color = color.black,pickable = False)]
-L = [text(pos = vector(2.1,(-0.2 -8.4),0.1), text = '0', height = 0.3,color=color.black,depth =0,pickable = False)]
-for n in range(1,(8*10)+1):
-    if n % 10 == 0:
-        a.append(box(pos = vector(1.7,(-0.02-8.4)+n*0.1,0),axis = vector(1,0,0), size = vector(0.7,-0.04,0.1),color = color.black,pickable = False))
-        d = n*0.1
-        d = str(d)
-        L.append(text(pos = vector(2.1,-0.1-8+n*0.1,0.1), text = d , height = 0.3,depth=0,color = color.black,pickable = False))
-    elif n % 5 ==0:
-        a.append(box(pos = vector(1.6,-0.02-8+n*0.1,0),axis = vector(1,0,0), size = vector(0.5,-0.04,0.1),color = color.black,pickable = False))
-    else:
-        a.append(box(pos = vector(1.5,-0.02-8+0.1*n,0),axis = vector(1,0,0), size = vector(0.3,-0.04,0.1),color = color.black,pickable = False))
-for n in range(1,(16 -8)*10 + 1):
-    if n % 10 == 0:
-        a.append(box(pos = vector(1.7,(-0.02-8)-n*0.1,0),axis = vector(1,0,0), size = vector(0.7,-0.04,0.1),color = color.black,pickable = False))
-        d = n*0.1
-        d = str(d)
-        L.append(text(pos = vector(2.1,-0.1-8-n*0.1,0.1), text = d , height = 0.3,depth=0,color=color.black,pickable = False))
-    elif n % 5 ==0:
-        a.append(box(pos = vector(1.6,-0.02-8-n*0.1,0),axis = vector(1,0,0), size = vector(0.5,-0.04,0.1),color = color.black,pickable = False))
-    else:
-        a.append(box(pos = vector(1.5,-0.02-8-0.1*n,0),axis = vector(1,0,0), size = vector(0.3,-0.04,0.1),color = color.black,pickable = False))
+S = compound([paye1,sh,s,pich1,roof,sh1,s1,pich2,roof1,E1,E2,b1,b2,b3,b4,ground])
+S.pickable = False
+paye1.visible = False
+del paye1
+sh.visible = False
+del sh
+s.visible = False
+del s
+pich1.visible = False
+del pich1
+roof.visible = False
+del roof
+sh1.visible = False
+del sh1
+s1.visible = False
+del s1
+pich2.visible = False
+del pich2
+roof1.visible = False
+del roof1
+E1.visible = False
+del E1
+E2.visible = False
+del E2
+b1.visible = False
+del b1
+b2.visible = False
+del b2
+b3.visible = False
+del b3
+b4.visible = False
+del b4
+ground.visible = False
+del ground
 """Drag"""
 def down():
     global drag,mass,obj
@@ -200,34 +270,7 @@ while True:
             Error.text = 'Error : Change g'
             eq.y = -8
         else:
-            for i in range(0,len(L)):
-                L[0].visible = False
-                del L[0]
-            for i in range(0,len(a)):
-                a[0].visible = False
-                del a[0]
-            a = [box(pos = vector(1.7,(-0.02 + eq.y),0),axis = vector(1,0,0), size = vector(0.7,-0.04,0.1),color = color.black,pickable = False)]
-            L = [text(pos = vector(2.1,(-0.2 + eq.y),0.1), text = '0', height = 0.3,color=color.black,depth =0,pickable = False)]
-            for n in range(1,((-eq.y-0.4)*10)+1):
-                if n % 10 == 0:
-                    a.append(box(pos = vector(1.7,(-0.02+eq.y)+n*0.1,0),axis = vector(1,0,0), size = vector(0.7,-0.04,0.1),color = color.black,pickable = False))
-                    d = n*0.1
-                    d = str(d)
-                    L.append(text(pos = vector(2.1,-0.2+eq.y+n*0.1,0.1), text = d, height = 0.3,color=color.black,depth =0,pickable = False))
-                elif n % 5 ==0:
-                    a.append(box(pos = vector(1.6,-0.02+eq.y+n*0.1,0),axis = vector(1,0,0), size = vector(0.5,-0.04,0.1),color = color.black,pickable = False))
-                else:
-                    a.append(box(pos = vector(1.5,-0.02+eq.y+0.1*n,0),axis = vector(1,0,0), size = vector(0.3,-0.04,0.1),color = color.black,pickable = False))
-            for n in range(1,(16.4 + eq.y)*10 + 1):
-                if n % 10 == 0:
-                    a.append(box(pos = vector(1.7,(-0.02+eq.y)-n*0.1,0),axis = vector(1,0,0), size = vector(0.7,-0.04,0.1),color = color.black,pickable = False))
-                    d = n*0.1
-                    d = str(d)
-                    L.append(text(pos = vector(2.1,-0.2+eq.y-n*0.1,0.1), text = d, height = 0.3,color=color.black,depth =0,pickable = False))
-                elif n % 5 ==0:
-                    a.append(box(pos = vector(1.6,-0.02+eq.y-n*0.1,0),axis = vector(1,0,0), size = vector(0.5,-0.04,0.1),color = color.black,pickable = False))
-                else:
-                    a.append(box(pos = vector(1.5,-0.02+eq.y-0.1*n,0),axis = vector(1,0,0), size = vector(0.3,-0.04,0.1),color = color.black,pickable = False))
+            ruller.pos.y = eq.y-0.4
     else:
         gravity.disabled = True
         r1.disabled = True
