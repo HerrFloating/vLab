@@ -550,7 +550,7 @@ async function __main__() {
     "226";
     scene1.append_to_caption("\n\n");
     "228";
-    async function Springs(c) {
+    async function Springs1(c) {
         "229";
         "230";
         if ((r1.checked === true || typeof r1.checked === "object" && RS_equals(r1.checked, true))) {
@@ -563,34 +563,45 @@ async function __main__() {
             "234";
             spring.thickness = .1;
             "235";
-        }
-        if ((r2.checked === true || typeof r2.checked === "object" && RS_equals(r2.checked, true))) {
-            "236";
-            k1 = 2;
-            "237";
-            spring.color = color.gray(.8);
-            "238";
-            spring.radius = .6;
-            "239";
-            spring.thickness = .05;
-            "240";
-            r1.checked = false;
+            r2.checked = false;
         }
     };
-    if (!Springs.__argnames__) Object.defineProperties(Springs, {
+    if (!Springs1.__argnames__) Object.defineProperties(Springs1, {
         __argnames__ : {value: ["c"]},
         __module__ : {value: null}
     });
 
-    "241";
-    r1 = RS_interpolate_kwargs.call(this, radio, [RS_desugar_kwargs({bind: Springs, checked: true, text: "First Spring"})]);
-    "242";
-    r2 = RS_interpolate_kwargs.call(this, radio, [RS_desugar_kwargs({bind: Springs, text: "Second Spring"})]);
-    "243";
-    scene1.append_to_caption("\n\n");
+    "236";
+    async function Springs2(c) {
+        "237";
+        "238";
+        if ((r2.checked === true || typeof r2.checked === "object" && RS_equals(r2.checked, true))) {
+            "239";
+            k1 = 2;
+            "240";
+            spring.color = color.gray(.8);
+            "241";
+            spring.radius = .6;
+            "242";
+            spring.thickness = .05;
+            "243";
+            r1.checked = false;
+        }
+    };
+    if (!Springs2.__argnames__) Object.defineProperties(Springs2, {
+        __argnames__ : {value: ["c"]},
+        __module__ : {value: null}
+    });
+
+    "244";
+    r1 = RS_interpolate_kwargs.call(this, radio, [RS_desugar_kwargs({bind: Springs1, checked: true, text: "First Spring"})]);
     "245";
+    r2 = RS_interpolate_kwargs.call(this, radio, [RS_desugar_kwargs({bind: Springs2, text: "Second Spring"})]);
+    "246";
+    scene1.append_to_caption("\n\n");
+    "248";
     async function T1(s) {
-        "246";
+        "249";
     };
     if (!T1.__argnames__) Object.defineProperties(T1, {
         __argnames__ : {value: ["s"]},
@@ -598,99 +609,99 @@ async function __main__() {
     });
 
     ;(await sleep(.2));
-    "247";
+    "250";
     gravity = RS_interpolate_kwargs.call(this, winput, [RS_desugar_kwargs({bind: T1, prompt: "Enter g : (press ENTER)", text: "0", number: 0})]);
-    "248";
-    g = gravity.number;
-    "249";
-    scene1.append_to_caption("\n\n");
     "251";
-    W1 = RS_interpolate_kwargs.call(this, wtext, [RS_desugar_kwargs({text: "Elapsed time : 0"})]);
+    g = gravity.number;
     "252";
     scene1.append_to_caption("\n\n");
     "254";
-    Error = RS_interpolate_kwargs.call(this, wtext, [RS_desugar_kwargs({text: "No Error"})]);
+    W1 = RS_interpolate_kwargs.call(this, wtext, [RS_desugar_kwargs({text: "Elapsed time : 0"})]);
     "255";
+    scene1.append_to_caption("\n\n");
+    "257";
+    Error = RS_interpolate_kwargs.call(this, wtext, [RS_desugar_kwargs({text: "No Error"})]);
+    "258";
     while (true) {
-        "256";
+        "259";
         scene1.bind("mousedown", down);
-        "258";
+        "261";
         scene1.bind("mousemove", move);
-        "260";
+        "263";
         scene1.bind("mouseup", up);
-        "262";
+        "265";
         if ((t === 0 || typeof t === "object" && RS_equals(t, 0))) {
-            "263";
-            r1.disabled = false;
-            "264";
-            r2.disabled = false;
-            "265";
-            gravity.disabled = false;
             "266";
-            g = gravity.number;
+            r1.disabled = false;
             "267";
-            eq.y = 8["-u"]()["-"](M1["+"](m["/"](2))["*"](g)["/"](k1));
+            r2.disabled = false;
             "268";
+            gravity.disabled = false;
+            "269";
+            g = gravity.number;
+            "270";
+            eq.y = 8["-u"]()["-"](M1["+"](m["/"](2))["*"](g)["/"](k1));
+            "271";
             if (eq.y["<"](10["-u"]())) {
-                "269";
-                Error.text = "Error : Change g";
-                "270";
-                eq.y = 8["-u"]();
-                "271";
-            } else {
                 "272";
-                ruller.pos.y = eq.y["-"](.4);
+                Error.text = "Error : Change g";
                 "273";
+                eq.y = 8["-u"]();
+                "274";
+            } else {
+                "275";
+                ruller.pos.y = eq.y["-"](.4);
+                "276";
             }
         } else {
-            "274";
+            "277";
             gravity.disabled = true;
-            "275";
+            "278";
             r1.disabled = true;
-            "276";
+            "279";
             r2.disabled = true;
         }
-        "278";
+        "281";
         ;(await rate(1e3));
-        "279";
+        "282";
         if (running) {
-            "280";
-            mass.pos = mass.velocity["*"](dt)["+"](mass.pos);
-            "281";
-            mass.velocity = k1["/"](M1["+"](m["/"](3)))["*"](eq["-"](mass.pos))["-"](g["*"](vector(0, 1, 0)))["*"](dt)["+"](mass.velocity);
-            "282";
-            spring.axis = mass.pos;
             "283";
-            t = t["+"](dt);
+            mass.pos = mass.velocity["*"](dt)["+"](mass.pos);
             "284";
-            v.visible = true;
+            mass.velocity = k1["/"](M1["+"](m["/"](3)))["*"](eq["-"](mass.pos))["-"](g["*"](vector(0, 1, 0)))["*"](dt)["+"](mass.velocity);
             "285";
+            spring.axis = mass.pos;
+            "286";
+            t = t["+"](dt);
+            "287";
+            v.visible = true;
+            "288";
             v.pos = mass.pos;
             "Timer";
-            "287";
-            t1 = str(t);
-            "288";
-            s = t1.find(".");
-            "289";
-            t1 = t1.slice(0, s["+"](3));
             "290";
+            t1 = str(t);
+            "291";
+            s = t1.find(".");
+            "292";
+            t1 = t1.slice(0, s["+"](3));
+            "293";
             W1.text = ["Elapsed time :", t1];
         }
-        "291";
+        "294";
         k = keysdown();
-        "292";
+        "295";
         if (RS_in("up", k)) {
             scene1.center = scene1.center["+"](vector(0, .01, 0));
         }
-        "293";
+        "296";
         if (RS_in("down", k)) {
             scene1.center = scene1.center["+"](vector(0, .01["-u"](), 0));
         }
-        "294";
+        "297";
         if (RS_in("left", k)) {
             scene1.center = scene1.center["+"](vector(.01["-u"](), 0, 0));
         }
-        "295";
+        "298";
         if (RS_in("right", k)) {
             scene1.center = scene1.center["+"](vector(.01, 0, 0));
         }
