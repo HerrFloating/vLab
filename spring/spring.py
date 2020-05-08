@@ -63,7 +63,7 @@ v = arrow(pos = vector(-4,0,0),axis = vector(3.5,0,0),shaftwidth = 0.1,length = 
 """ruler"""
 eq.y = -8
 rul = box(pos = vector(2,-8.4,0), axis = vector(1,0,0), size = vector(1.3,16.13,0.1),color = vector(12/255,184/255,252/255))
-c = vector(223/255,255/255,0/255)
+c = color.black
 a = [box(pos = vector(1.7,(-0.02 + eq.y),0),axis = vector(1,0,0), size = vector(0.7,-0.04,0.1),color = c)]
 L = [text(pos = vector(2.1,(-0.2 + eq.y),0.2), text = '0', height = 0.3,color=c,depth =0)]
 for n in range(1,((-eq.y-0.4)*10)+1):
@@ -86,11 +86,7 @@ for n in range(1,(16.4 + eq.y)*10 + 1):
         a.append(box(pos = vector(1.6,-0.02+eq.y-n*0.1,0),axis = vector(1,0,0), size = vector(0.5,-0.04,0.1),color = c))
     else:
         a.append(box(pos = vector(1.5,-0.02+eq.y-0.1*n,0),axis = vector(1,0,0), size = vector(0.3,-0.04,0.1),color = c))
-ruller = compound([rul,a[0]])
-for i in range(1,len(a)):
-    ruller = compound([ruller,a[i]])
-for i in range(len(L)):
-    ruller = compound([ruller,L[i]])
+ruller = compound([rul,L[0],L[1],L[2],L[3],L[4],L[5],L[6],L[7],L[8],L[9],L[10],L[11],L[12],L[13],L[14],L[15],a[ 0 ],a[ 1 ],a[ 2 ],a[ 3 ],a[ 4 ],a[ 5 ],a[ 6 ],a[ 7 ],a[ 8 ],a[ 9 ],a[ 10 ],a[ 11 ],a[ 12 ],a[ 13 ],a[ 14 ],a[ 15 ],a[ 16 ],a[ 17 ],a[ 18 ],a[ 19 ],a[ 20 ],a[ 21 ],a[ 22 ],a[ 23 ],a[ 24 ],a[ 25 ],a[ 26 ],a[ 27 ],a[ 28 ],a[ 29 ],a[ 30 ],a[ 31 ],a[ 32 ],a[ 33 ],a[ 34 ],a[ 35 ],a[ 36 ],a[ 37 ],a[ 38 ],a[ 39 ],a[ 40 ],a[ 41 ],a[ 42 ],a[ 43 ],a[ 44 ],a[ 45 ],a[ 46 ],a[ 47 ],a[ 48 ],a[ 49 ],a[ 50 ],a[ 51 ],a[ 52 ],a[ 53 ],a[ 54 ],a[ 55 ],a[ 56 ],a[ 57 ],a[ 58 ],a[ 59 ],a[ 60 ],a[ 61 ],a[ 62 ],a[ 63 ],a[ 64 ],a[ 65 ],a[ 66 ],a[ 67 ],a[ 68 ],a[ 69 ],a[ 70 ],a[ 71 ],a[ 72 ],a[ 73 ],a[ 74 ],a[ 75 ],a[ 76 ],a[ 77 ],a[ 78 ],a[ 79 ],a[ 80 ],a[ 81 ],a[ 82 ],a[ 83 ],a[ 84 ],a[ 85 ],a[ 86 ],a[ 87 ],a[ 88 ],a[ 89 ],a[ 90 ],a[ 91 ],a[ 92 ],a[ 93 ],a[ 94 ],a[ 95 ],a[ 96 ],a[ 97 ],a[ 98 ],a[ 99 ],a[ 100 ],a[ 101 ],a[ 102 ],a[ 103 ],a[ 104 ],a[ 105 ],a[ 106 ],a[ 107 ],a[ 108 ],a[ 109 ],a[ 110 ],a[ 111 ],a[ 112 ],a[ 113 ],a[ 114 ],a[ 115 ],a[ 116 ],a[ 117 ],a[ 118 ],a[ 119 ],a[ 120 ],a[ 121 ],a[ 122 ],a[ 123 ],a[ 124 ],a[ 125 ],a[ 126 ],a[ 127 ],a[ 128 ],a[ 129 ],a[ 130 ],a[ 131 ],a[ 132 ],a[ 133 ],a[ 134 ],a[ 135 ],a[ 136 ],a[ 137 ],a[ 138 ],a[ 139 ],a[ 140 ],a[ 141 ],a[ 142 ],a[ 143 ],a[ 144 ],a[ 145 ],a[ 146 ],a[ 147 ],a[ 148 ],a[ 149 ],a[ 150 ],a[ 151 ],a[ 152 ],a[ 153 ],a[ 154 ],a[ 155 ],a[ 156 ],a[ 157 ],a[ 158 ],a[ 159 ],a[ 160 ]])
 ruller.pickable = False
 rul.visible = False
 del rul
@@ -180,3 +176,120 @@ def move():
         if mass.pos.y > -0.5 or mass.pos.y < -15.5:
             running = False
             Error.text = "Error: Mass position has to be between 0 and 15 ."
+            mass.pos.y = -10
+            spring.axis = mass.pos
+        else:
+            Error.text = "No Error"
+def up():
+    global drag, mass,obj
+
+    drag = False
+"""Run button"""
+running = False
+def Run(b):
+    global running
+    running = not running
+    if running: b.text = "Pause"
+    else: b.text = "Run"
+button(text = 'Run' , bind = Run)
+"""Clear button"""
+def Clear(c):
+    global W1,t , mass , spring,eq
+    t = 0
+    eq = vector(0,-8-((M1+m/2)*g/k1),0)
+    mass.pos = eq
+    spring.axis = mass.pos
+    mass.velocity = vector(0,0,0)
+    v.visible = False
+    W1.text = 'Elapsed time : 0'
+button(text = 'Clear',bind = Clear)
+"""Reset button"""
+def Reset(c):
+    global  W1,t , mass , spring,mass1,eq,s1,M1
+    t = 0
+    M1 = 0
+    mass1.pos=vector(-5,-19.75,0)
+    mass2.pos=vector(-7,-19.75,0)
+    mass3.pos=vector(-9,-19.75,0)
+    mass4.pos=vector(-11,-19.75,0)
+    mass5.pos=vector(-13,-19.75,0)
+    mass = box(pos = eq,axis = vector(1,0,0),size=vector(0.01,0.01,0.01),velocity = vector(0,0,0),visible = False)
+    eq = vector(0,-8-((M1+m/2)*g/k1),0)
+    spring.axis = vector(0,eq.y,0)
+    mass.velocity = vector(0,0,0)
+    v.visible = False
+    W1.text = 'Elapsed time : 0'
+button(text = 'Reset' , bind = Reset)
+scene1.append_to_caption('\n\n')
+"""diffrent springs"""
+def Springs1(c):
+    global spring,k1
+    if r1.checked == True :
+            k1=pi**2
+            spring.color = color.gray(0.1)
+            spring.radius=0.8
+            spring.thickness = 0.1
+            r2.checked = False
+def Springs2(c):
+    global spring,k1
+    if r2.checked == True :
+            k1 = 2
+            spring.color = color.gray(0.8)
+            spring.radius = 0.6
+            spring.thickness = 0.05
+            r1.checked = False
+r1 = radio(bind=Springs1,checked = True, text='First Spring')
+r2 = radio(bind = Springs2 , text='Second Spring')
+scene1.append_to_caption('\n\n')
+"""gravity acceleraion"""
+def T1(s):
+    pass
+gravity = winput(bind = T1,prompt = 'Enter g : (press ENTER)',text = "0", number = 0)
+g = gravity.number
+scene1.append_to_caption('\n\n')
+"""Timer box"""
+W1 = wtext(text = 'Elapsed time : 0')
+scene1.append_to_caption('\n\n')
+"""Error"""
+Error = wtext(text = 'No Error')
+while True:
+    scene1.bind("mousedown", down)
+
+    scene1.bind("mousemove", move)
+
+    scene1.bind("mouseup", up)
+
+    if t == 0:
+        r1.disabled = False
+        r2.disabled = False
+        gravity.disabled = False
+        g = gravity.number
+        eq.y = -8-((M1+m/2)*g/k1)
+        if eq.y < -10:
+            Error.text = 'Error : Change g'
+            eq.y = -8
+        else:
+            ruller.pos.y = eq.y-0.4
+    else:
+        gravity.disabled = True
+        r1.disabled = True
+        r2.disabled = True
+
+    rate(1e3)
+    if running :
+        mass.pos = mass.velocity*dt + mass.pos
+        mass.velocity = ((k1/(M1+m/3))*(eq - mass.pos) - g*vector(0,1,0))* dt + mass.velocity
+        spring.axis = mass.pos
+        t = t + dt
+        v.visible = True
+        v.pos = mass.pos
+        """Timer"""
+        t1 = str(t)
+        s = t1.find('.')
+        t1 = t1[0:s+3]
+        W1.text = "Elapsed time :" , t1
+    k = keysdown()
+    if 'up' in k: scene1.center =scene1.center +  vector(0,0.01,0)
+    if 'down' in k: scene1.center =scene1.center + vector(0,-0.01,0)
+    if 'left' in k: scene1.center = scene1.center + vector(-0.01,0,0)
+    if 'right' in k: scene1.center = scene1.center + vector(0.01,0,0)
