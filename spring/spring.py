@@ -1,6 +1,6 @@
 from vpython import *
 from math import *
-
+import random
 """constants"""
 k1 = pi**2
 M1 = 0
@@ -9,6 +9,7 @@ eq = vector(0,-8,0)
 t = 0
 dt = 1e-3
 eq.y = -8-((M1+m/2)*g/k1)
+g = 9.8
 
 """background setting"""
 scene1 = canvas(center = vector(0,-8,0),background = color.white)
@@ -22,7 +23,7 @@ t1.visible = False
 del t1
 del mass1e
 mass1.pos.z = 0
-mass1.mass = 0.05
+mass1.mass = random.uniform(49.9,50.1)/1000
 mass2e=cylinder(pos = vector(-7,-19,0),axis=vector(0,-1.3,0),radius = 0.8,color = vector(229/255,123/255,57/255))
 t2 = text(pos = mass2e.pos + vector(0,-1.3/2,1),color=color.black,text = '40 g',height = 0.3 , depth=0)
 mass2 = compound([mass2e,t2])
@@ -31,7 +32,7 @@ t2.visible = False
 del mass2e
 del t2
 mass2.pos.z=0
-mass2.mass = 0.04
+mass2.mass = random.uniform(39.9,40.1)/1000
 mass3e=cylinder(pos = vector(-9,-19,0),axis=vector(0,-1.1,0),radius = 0.8,color = vector(229/255,109/255,57/255))
 t3 = text(pos = mass3e.pos + vector(0,-1.1/2,1),color=color.black,text = '30 g',height = 0.3 , depth=0)
 mass3 = compound([mass3e,t3])
@@ -40,7 +41,7 @@ t3.visible = False
 del mass3e
 del t3
 mass3.pos.z=0
-mass3.mass = 0.03
+mass3.mass = random.uniform(29.9,30.1)/1000
 mass4e=cylinder(pos = vector(-11,-19,0),axis=vector(0,-0.9,0),radius = 0.8,color = vector(229/255,91/255,57/255))
 t4 = text(pos = mass4e.pos + vector(0,-0.9/2,1),color=color.black,text = '20 g',height = 0.3 , depth=0)
 mass4 = compound([mass4e,t4])
@@ -49,7 +50,7 @@ t4.visible = False
 del mass4e
 del t4
 mass4.pos.z = 0
-mass4.mass = 0.02
+mass4.mass = random.uniform(19.9,20.1)
 mass5e=cylinder(pos = vector(-13,-19,0),axis=vector(0,-0.7,0),radius = 0.8,color = vector(229/255,57/255,57/255))
 t5 = text(pos = mass5e.pos + vector(0,-0.7/2,1),color=color.black,text = '10 g',height = 0.3 , depth=0)
 mass5 = compound([mass5e,t5])
@@ -58,7 +59,12 @@ t5.visible = False
 del mass5e
 del t5
 mass5.pos.z = 0
-mass5.mass = 0.01
+mass5.mass = random.uniform(9.9,10.1)
+mass1.pos=vector(-5,-19.75,0)
+mass2.pos=vector(-7,-19.75,0)
+mass3.pos=vector(-9,-19.75,0)
+mass4.pos=vector(-11,-19.75,0)
+mass5.pos=vector(-13,-19.75,0)
 v = arrow(pos = vector(-4,0,0),axis = vector(3.5,0,0),shaftwidth = 0.1,length = 2,visible = False,color = color.red)
 """ruler"""
 eq.y = -8
@@ -242,11 +248,6 @@ r1 = radio(bind=Springs1,checked = True, text='First Spring')
 r2 = radio(bind = Springs2 , text='Second Spring')
 scene1.append_to_caption('\n\n')
 """gravity acceleraion"""
-def T1(s):
-    pass
-gravity = winput(bind = T1,prompt = 'Enter g : (press ENTER)',text = "0", number = 0)
-g = gravity.number
-scene1.append_to_caption('\n\n')
 """Timer box"""
 W1 = wtext(text = 'Elapsed time : 0')
 scene1.append_to_caption('\n\n')
@@ -262,8 +263,6 @@ while True:
     if t == 0:
         r1.disabled = False
         r2.disabled = False
-        gravity.disabled = False
-        g = gravity.number
         eq.y = -8-((M1+m/2)*g/k1)
         if eq.y < -10:
             Error.text = 'Error : Change g'
@@ -271,7 +270,6 @@ while True:
         else:
             ruller.pos.y = eq.y-0.4
     else:
-        gravity.disabled = True
         r1.disabled = True
         r2.disabled = True
 

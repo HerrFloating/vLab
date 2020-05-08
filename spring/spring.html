@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Spring Experiment</title>
+</head>
+<body>
+<div id="glowscript" class="glowscript">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="src/cal.css">
 <div id="glowscript" class="glowscript">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link type="text/css" href="https://s3.amazonaws.com/glowscript/css/redmond/2.1/jquery-ui.custom.css" rel="stylesheet" />
@@ -9,694 +18,982 @@
 <script type="text/javascript" src="https://s3.amazonaws.com/glowscript/package/RSrun.2.9.min.js"></script>
 <script type="text/javascript"><!--//--><![CDATA[//><!--
 
-// START JAVASCRIPT
-;(function() {;
-var RS_modules = {};
-var drag, mass, obj, M1, eq, running, W1, t, spring, mass1, s1, k1;
-RS_modules.pythonize = {};
+  // START JAVASCRIPT
+  ;(function() {;
+  var RS_modules = {};
+  var drag, mass, obj, M1, eq, running, W1, t, spring, mass1, s1, k1;
+  RS_modules.pythonize = {};
+  RS_modules.random = {};
 
-(function(){
-    function strings() {
-        var string_funcs, exclude, name;
-        string_funcs = set("capitalize strip lstrip rstrip islower isupper isspace lower upper swapcase center count endswith startswith find rfind index rindex format join ljust rjust partition rpartition replace split rsplit splitlines zfill".split(" "));
-        if (!arguments.length) {
-            exclude = (function(){
-                var s = RS_set();
-                s.jsset.add("split");
-                s.jsset.add("replace");
-                return s;
-            })();
-        } else if (arguments[0]) {
-            exclude = Array.prototype.slice.call(arguments);
-        } else {
-            exclude = null;
-        }
-        if (exclude) {
-            string_funcs = string_funcs.difference(set(exclude));
-        }
-        var RS_Iter0 = string_funcs;
-        RS_Iter0 = ((typeof RS_Iter0[Symbol.iterator] === "function") ? (RS_Iter0 instanceof Map ? RS_Iter0.keys() : RS_Iter0) : Object.keys(RS_Iter0));
-        for (var RS_Index0 of RS_Iter0) {
-            name = RS_Index0;
-            (RS_expr_temp = String.prototype)[(typeof name === "number" && name < 0) ? RS_expr_temp.length + name : name] = (RS_expr_temp = RS_str.prototype)[(typeof name === "number" && name < 0) ? RS_expr_temp.length + name : name];
-        }
-    };
-    if (!strings.__module__) Object.defineProperties(strings, {
-        __module__ : {value: "pythonize"}
-    });
+  (function(){
+      function strings() {
+          var string_funcs, exclude, name;
+          string_funcs = set("capitalize strip lstrip rstrip islower isupper isspace lower upper swapcase center count endswith startswith find rfind index rindex format join ljust rjust partition rpartition replace split rsplit splitlines zfill".split(" "));
+          if (!arguments.length) {
+              exclude = (function(){
+                  var s = RS_set();
+                  s.jsset.add("split");
+                  s.jsset.add("replace");
+                  return s;
+              })();
+          } else if (arguments[0]) {
+              exclude = Array.prototype.slice.call(arguments);
+          } else {
+              exclude = null;
+          }
+          if (exclude) {
+              string_funcs = string_funcs.difference(set(exclude));
+          }
+          var RS_Iter0 = string_funcs;
+          RS_Iter0 = ((typeof RS_Iter0[Symbol.iterator] === "function") ? (RS_Iter0 instanceof Map ? RS_Iter0.keys() : RS_Iter0) : Object.keys(RS_Iter0));
+          for (var RS_Index0 of RS_Iter0) {
+              name = RS_Index0;
+              (RS_expr_temp = String.prototype)[(typeof name === "number" && name < 0) ? RS_expr_temp.length + name : name] = (RS_expr_temp = RS_str.prototype)[(typeof name === "number" && name < 0) ? RS_expr_temp.length + name : name];
+          }
+      };
+      if (!strings.__module__) Object.defineProperties(strings, {
+          __module__ : {value: "pythonize"}
+      });
 
-    RS_modules.pythonize.strings = strings;
-})();
-async function __main__() {
-    var version, box, sphere, simple_sphere, cylinder, pyramid, cone, helix, ellipsoid, ring, arrow, compound, display, vector, print, arange, __name__, type, scene, RS_ls, k1, M1, m, eq, t, dt, scene1, mass, mass1e, t1, mass1, mass2e, t2, mass2, mass3e, t3, mass3, mass4e, t4, mass4, mass5e, t5, mass5, v, rul, c, a, L, d, n, ruller, i, paye1, sh, s, pich1, roof, sh1, s1, pich2, roof1, E1, E2, b1, b2, b3, b4, ground, spring, S, running, r1, r2, gravity, g, W1, Error, k;
-    version = RS_list_decorate([ "2.9", "glowscript" ]);
-    Array.prototype['+']=function(r) {return this.concat(r)}
-    Array.prototype['*']=function(r) {return __array_times_number(this, r)}
-    window.__GSlang = "vpython";
-    box = vp_box;
-    sphere = vp_sphere;
-    simple_sphere = vp_simple_sphere;
-    cylinder = vp_cylinder;
-    pyramid = vp_pyramid;
-    cone = vp_cone;
-    helix = vp_helix;
-    ellipsoid = vp_ellipsoid;
-    ring = vp_ring;
-    arrow = vp_arrow;
-    compound = vp_compound;
-    display = canvas;
-    vector = vec;
-    print = GSprint;
-    arange = range;
-    __name__ = "__main__";
-    type = pytype;
-    scene = canvas();
-    fontloading();
-    await waitforfonts();
-    var strings = RS_modules.pythonize.strings;
+      RS_modules.pythonize.strings = strings;
+  })();
 
-    strings();
-    "4";
-    k1 = GS_power(pi, 2);
-    "5";
-    M1 = 0;
-    "6";
-    m = .07;
-    "7";
-    eq = vector(0, 8["-u"](), 0);
-    "8";
-    t = 0;
-    "9";
-    dt = .001;
-    "10";
-    eq.y = 8["-u"]()["-"](M1["+"](m["/"](2))["*"](g)["/"](k1));
-    "13";
-    scene1 = RS_interpolate_kwargs.call(this, canvas, [RS_desugar_kwargs({center: vector(0, 8["-u"](), 0), background: color.white})]);
-    "14";
-    mass = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: eq, axis: vector(1, 0, 0), size: vector(.01, .01, .01), velocity: vector(0, 0, 0), visible: false, pickable: false})]);
-    "16";
-    mass1e = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(5["-u"](), 19["-u"](), 0), axis: vector(0, 1.5["-u"](), 0), radius: .8, color: vector(229["/"](255), 137["/"](255), 57["/"](255))})]);
-    "17";
-    t1 = RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: mass1e.pos["+"](vector(0, .75["-u"](), 1)), color: color.black, text: "50 g", height: .3, depth: 0})]);
-    "18";
-    mass1 = compound(RS_list_decorate([ mass1e, t1 ]));
-    "19";
-    mass1e.visible = false;
-    "20";
-    t1.visible = false;
-    "21";
-    t1 = undefined;
-    "22";
-    mass1e = undefined;
-    "23";
-    mass1.pos.z = 0;
-    "24";
-    mass1.mass = .05;
-    "25";
-    mass2e = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(7["-u"](), 19["-u"](), 0), axis: vector(0, 1.3["-u"](), 0), radius: .8, color: vector(229["/"](255), 123["/"](255), 57["/"](255))})]);
-    "26";
-    t2 = RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: mass2e.pos["+"](vector(0, 1.3["-u"]()["/"](2), 1)), color: color.black, text: "40 g", height: .3, depth: 0})]);
-    "27";
-    mass2 = compound(RS_list_decorate([ mass2e, t2 ]));
-    "28";
-    mass2e.visible = false;
-    "29";
-    t2.visible = false;
-    "30";
-    mass2e = undefined;
-    "31";
-    t2 = undefined;
-    "32";
-    mass2.pos.z = 0;
-    "33";
-    mass2.mass = .04;
-    "34";
-    mass3e = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(9["-u"](), 19["-u"](), 0), axis: vector(0, 1.1["-u"](), 0), radius: .8, color: vector(229["/"](255), 109["/"](255), 57["/"](255))})]);
-    "35";
-    t3 = RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: mass3e.pos["+"](vector(0, 1.1["-u"]()["/"](2), 1)), color: color.black, text: "30 g", height: .3, depth: 0})]);
-    "36";
-    mass3 = compound(RS_list_decorate([ mass3e, t3 ]));
-    "37";
-    mass3e.visible = false;
-    "38";
-    t3.visible = false;
-    "39";
-    mass3e = undefined;
-    "40";
-    t3 = undefined;
-    "41";
-    mass3.pos.z = 0;
-    "42";
-    mass3.mass = .03;
-    "43";
-    mass4e = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(11["-u"](), 19["-u"](), 0), axis: vector(0, .9["-u"](), 0), radius: .8, color: vector(229["/"](255), 91["/"](255), 57["/"](255))})]);
-    "44";
-    t4 = RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: mass4e.pos["+"](vector(0, .9["-u"]()["/"](2), 1)), color: color.black, text: "20 g", height: .3, depth: 0})]);
-    "45";
-    mass4 = compound(RS_list_decorate([ mass4e, t4 ]));
-    "46";
-    mass4e.visible = false;
-    "47";
-    t4.visible = false;
-    "48";
-    mass4e = undefined;
-    "49";
-    t4 = undefined;
-    "50";
-    mass4.pos.z = 0;
-    "51";
-    mass4.mass = .02;
-    "52";
-    mass5e = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(13["-u"](), 19["-u"](), 0), axis: vector(0, .7["-u"](), 0), radius: .8, color: vector(229["/"](255), 57["/"](255), 57["/"](255))})]);
-    "53";
-    t5 = RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: mass5e.pos["+"](vector(0, .7["-u"]()["/"](2), 1)), color: color.black, text: "10 g", height: .3, depth: 0})]);
-    "54";
-    mass5 = compound(RS_list_decorate([ mass5e, t5 ]));
-    "55";
-    mass5e.visible = false;
-    "56";
-    t5.visible = false;
-    "57";
-    mass5e = undefined;
-    "58";
-    t5 = undefined;
-    "59";
-    mass5.pos.z = 0;
-    "60";
-    mass5.mass = .01;
-    "61";
-    v = RS_interpolate_kwargs.call(this, arrow, [RS_desugar_kwargs({pos: vector(4["-u"](), 0, 0), axis: vector(3.5, 0, 0), shaftwidth: .1, length: 2, visible: false, color: color.red})]);
-    "63";
-    eq.y = 8["-u"]();
-    "64";
-    rul = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(2, 8.4["-u"](), 0), axis: vector(1, 0, 0), size: vector(1.3, 16.13, .1), color: vector(12["/"](255), 184["/"](255), 252["/"](255))})]);
-    "65";
-    c = color.black;
-    "66";
-    a = RS_list_decorate([ RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.7, .02["-u"]()["+"](eq.y), 0), axis: vector(1, 0, 0), size: vector(.7, .04["-u"](), .1), color: c})]) ]);
-    "67";
-    L = RS_list_decorate([ RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: vector(2.1, .2["-u"]()["+"](eq.y), .2), text: "0", height: .3, color: c, depth: 0})]) ]);
-    "68";
-    for (var RS_Index1 = 1; RS_Index1["<"](eq.y["-u"]()["-"](.4)["*"](10)["+"](1)); RS_Index1++) {
-        n = RS_Index1;
-        "69";
-        if (RS_equals(n["%"](10), 0)) {
-            "70";
-            a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.7, .02["-u"]()["+"](eq.y)["+"](n["*"](.1)), 0), axis: vector(1, 0, 0), size: vector(.7, .04["-u"](), .1), color: c})]));
-            "71";
-            d = n["*"](.1);
-            "72";
-            d = str(d);
-            "73";
-            L.append(RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: vector(2.1, .2["-u"]()["+"](eq.y)["+"](n["*"](.1)), .2), text: d, height: .3, color: c, depth: 0})]));
-            "74";
-        } else if (RS_equals(n["%"](5), 0)) {
-            "75";
-            a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.6, .02["-u"]()["+"](eq.y)["+"](n["*"](.1)), 0), axis: vector(1, 0, 0), size: vector(.5, .04["-u"](), .1), color: c})]));
-            "76";
-        } else {
-            "77";
-            a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.5, .02["-u"]()["+"](eq.y)["+"](.1["*"](n)), 0), axis: vector(1, 0, 0), size: vector(.3, .04["-u"](), .1), color: c})]));
-        }
+  (function(){
+      var RS_seed_state, RS_get_random_byte;
+      RS_seed_state = (function(){
+          var RS_d = {};
+          RS_d["key"] = RS_list_decorate([]);
+          RS_d["key_i"] = 0;
+          RS_d["key_j"] = 0;
+          return RS_d;
+      }).call(this);
+      RS_get_random_byte = (function() {
+          var RS_anonfunc = function () {
+              var RS_unpack;
+              RS_seed_state.key_i = (RS_seed_state.key_i + 1) % 256;
+              RS_seed_state.key_j = (RS_seed_state.key_j + (RS_expr_temp = RS_seed_state.key)[RS_bound_index(RS_seed_state.key_i, RS_expr_temp)]) % 256;
+              RS_unpack = [(RS_expr_temp = RS_seed_state.key)[RS_bound_index(RS_seed_state.key_j, RS_expr_temp)],
+              (RS_expr_temp = RS_seed_state.key)[RS_bound_index(RS_seed_state.key_i, RS_expr_temp)]];
+              (RS_expr_temp = RS_seed_state.key)[RS_bound_index(RS_seed_state.key_i, RS_expr_temp)] = RS_unpack[0];
+              (RS_expr_temp = RS_seed_state.key)[RS_bound_index(RS_seed_state.key_j, RS_expr_temp)] = RS_unpack[1];
+              return (RS_expr_temp = RS_seed_state.key)[RS_bound_index(((RS_expr_temp = RS_seed_state.key)[RS_bound_index(RS_seed_state.key_i, RS_expr_temp)] + (RS_expr_temp = RS_seed_state.key)[RS_bound_index(RS_seed_state.key_j, RS_expr_temp)]) % 256, RS_expr_temp)];
+          };
+          if (!RS_anonfunc.__module__) Object.defineProperties(RS_anonfunc, {
+              __module__ : {value: "random"}
+          });
+          return RS_anonfunc;
+      })();
+      function seed() {
+          var x = (arguments[0] === undefined || ( 0 === arguments.length-1 && arguments[arguments.length-1] !== null && typeof arguments[arguments.length-1] === "object" && arguments[arguments.length-1] [RS_kwargs_symbol] === true)) ? seed.__defaults__.x : arguments[0];
+          var RS_kwargs_obj = arguments[arguments.length-1];
+          if (RS_kwargs_obj === null || typeof RS_kwargs_obj !== "object" || RS_kwargs_obj [RS_kwargs_symbol] !== true) RS_kwargs_obj = {};
+          if (Object.prototype.hasOwnProperty.call(RS_kwargs_obj, "x")){
+              x = RS_kwargs_obj.x;
+          }
+          var i, j, RS_unpack;
+          RS_seed_state.key_i = RS_seed_state.key_j = 0;
+          if (typeof x === "number") {
+              x = x.toString();
+          } else if (typeof x !== "string") {
+              throw new TypeError("unhashable type: '" + typeof x + "'");
+          }
+          for (var RS_Index1 = 0; RS_Index1 < 256; RS_Index1++) {
+              i = RS_Index1;
+              (RS_expr_temp = RS_seed_state.key)[(typeof i === "number" && i < 0) ? RS_expr_temp.length + i : i] = i;
+          }
+          j = 0;
+          for (var RS_Index2 = 0; RS_Index2 < 256; RS_Index2++) {
+              i = RS_Index2;
+              j = (j + (RS_expr_temp = RS_seed_state.key)[(typeof i === "number" && i < 0) ? RS_expr_temp.length + i : i] + x.charCodeAt(i % x.length)) % 256;
+              RS_unpack = [(RS_expr_temp = RS_seed_state.key)[(typeof j === "number" && j < 0) ? RS_expr_temp.length + j : j],
+              (RS_expr_temp = RS_seed_state.key)[(typeof i === "number" && i < 0) ? RS_expr_temp.length + i : i]];
+              (RS_expr_temp = RS_seed_state.key)[(typeof i === "number" && i < 0) ? RS_expr_temp.length + i : i] = RS_unpack[0];
+              (RS_expr_temp = RS_seed_state.key)[(typeof j === "number" && j < 0) ? RS_expr_temp.length + j : j] = RS_unpack[1];
+          }
+      };
+      if (!seed.__defaults__) Object.defineProperties(seed, {
+          __defaults__ : {value: {x:(new Date).getTime()}},
+          __handles_kwarg_interpolation__ : {value: true},
+          __argnames__ : {value: ["x"]},
+          __module__ : {value: "random"}
+      });
+
+      seed();
+      function random() {
+          var n, m, i;
+          n = 0;
+          m = 1;
+          for (var RS_Index3 = 0; RS_Index3 < 8; RS_Index3++) {
+              i = RS_Index3;
+              n += RS_get_random_byte() * m;
+              m *= 256;
+          }
+          return n / 0x10000000000000000;
+      };
+      if (!random.__module__) Object.defineProperties(random, {
+          __module__ : {value: "random"}
+      });
+
+      function randrange() {
+          return choice(range.apply(this, arguments));
+      };
+      if (!randrange.__module__) Object.defineProperties(randrange, {
+          __module__ : {value: "random"}
+      });
+
+      function randint(a, b) {
+          return int(random() * (b - a + 1) + a);
+      };
+      if (!randint.__argnames__) Object.defineProperties(randint, {
+          __argnames__ : {value: ["a", "b"]},
+          __module__ : {value: "random"}
+      });
+
+      function uniform(a, b) {
+          return random() * (b - a) + a;
+      };
+      if (!uniform.__argnames__) Object.defineProperties(uniform, {
+          __argnames__ : {value: ["a", "b"]},
+          __module__ : {value: "random"}
+      });
+
+      function choice(seq) {
+          if (seq.length > 0) {
+              return seq[RS_bound_index(Math.floor(random() * seq.length), seq)];
+          } else {
+              throw new IndexError;
+          }
+      };
+      if (!choice.__argnames__) Object.defineProperties(choice, {
+          __argnames__ : {value: ["seq"]},
+          __module__ : {value: "random"}
+      });
+
+      function shuffle() {
+          var x = ( 0 === arguments.length-1 && arguments[arguments.length-1] !== null && typeof arguments[arguments.length-1] === "object" && arguments[arguments.length-1] [RS_kwargs_symbol] === true) ? undefined : arguments[0];
+          var random_f = (arguments[1] === undefined || ( 1 === arguments.length-1 && arguments[arguments.length-1] !== null && typeof arguments[arguments.length-1] === "object" && arguments[arguments.length-1] [RS_kwargs_symbol] === true)) ? shuffle.__defaults__.random_f : arguments[1];
+          var RS_kwargs_obj = arguments[arguments.length-1];
+          if (RS_kwargs_obj === null || typeof RS_kwargs_obj !== "object" || RS_kwargs_obj [RS_kwargs_symbol] !== true) RS_kwargs_obj = {};
+          if (Object.prototype.hasOwnProperty.call(RS_kwargs_obj, "random_f")){
+              random_f = RS_kwargs_obj.random_f;
+          }
+          var j, RS_unpack, i;
+          for (var RS_Index4 = 0; RS_Index4 < x.length; RS_Index4++) {
+              i = RS_Index4;
+              j = Math.floor(random_f() * (i + 1));
+              RS_unpack = [x[(typeof j === "number" && j < 0) ? x.length + j : j], x[(typeof i === "number" && i < 0) ? x.length + i : i]];
+              x[(typeof i === "number" && i < 0) ? x.length + i : i] = RS_unpack[0];
+              x[(typeof j === "number" && j < 0) ? x.length + j : j] = RS_unpack[1];
+          }
+          return x;
+      };
+      if (!shuffle.__defaults__) Object.defineProperties(shuffle, {
+          __defaults__ : {value: {random_f:random}},
+          __handles_kwarg_interpolation__ : {value: true},
+          __argnames__ : {value: ["x", "random_f"]},
+          __module__ : {value: "random"}
+      });
+
+      function sample(population, k) {
+          var x, j, RS_unpack, i;
+          x = population.slice();
+          for (var RS_Index5 = population.length - 1; RS_Index5 > population.length - k - 1; RS_Index5-=1) {
+              i = RS_Index5;
+              j = Math.floor(random() * (i + 1));
+              RS_unpack = [x[(typeof j === "number" && j < 0) ? x.length + j : j], x[(typeof i === "number" && i < 0) ? x.length + i : i]];
+              x[(typeof i === "number" && i < 0) ? x.length + i : i] = RS_unpack[0];
+              x[(typeof j === "number" && j < 0) ? x.length + j : j] = RS_unpack[1];
+          }
+          return x.slice(population.length - k);
+      };
+      if (!sample.__argnames__) Object.defineProperties(sample, {
+          __argnames__ : {value: ["population", "k"]},
+          __module__ : {value: "random"}
+      });
+
+      RS_modules.random.RS_seed_state = RS_seed_state;
+      RS_modules.random.RS_get_random_byte = RS_get_random_byte;
+      RS_modules.random.seed = seed;
+      RS_modules.random.random = random;
+      RS_modules.random.randrange = randrange;
+      RS_modules.random.randint = randint;
+      RS_modules.random.uniform = uniform;
+      RS_modules.random.choice = choice;
+      RS_modules.random.shuffle = shuffle;
+      RS_modules.random.sample = sample;
+  })();
+  async function __main__() {
+      var version, box, sphere, simple_sphere, cylinder, pyramid, cone, helix, ellipsoid, ring, arrow, compound, display, vector, print, arange, __name__, type, scene, RS_ls, k1, M1, m, eq, t, dt, g, scene1, mass, mass1e, t1, mass1, mass2e, t2, mass2, mass3e, t3, mass3, mass4e, t4, mass4, mass5e, t5, mass5, v, rul, c, a, L, d, n, ruller, i, paye1, sh, s, pich1, roof, sh1, s1, pich2, roof1, E1, E2, b1, b2, b3, b4, ground, spring, S, running, r1, r2, W1, Error, k;
+      version = RS_list_decorate([ "2.9", "glowscript" ]);
+      Array.prototype['+']=function(r) {return this.concat(r)}
+      Array.prototype['*']=function(r) {return __array_times_number(this, r)}
+      window.__GSlang = "vpython";
+      box = vp_box;
+      sphere = vp_sphere;
+      simple_sphere = vp_simple_sphere;
+      cylinder = vp_cylinder;
+      pyramid = vp_pyramid;
+      cone = vp_cone;
+      helix = vp_helix;
+      ellipsoid = vp_ellipsoid;
+      ring = vp_ring;
+      arrow = vp_arrow;
+      compound = vp_compound;
+      display = canvas;
+      vector = vec;
+      print = GSprint;
+      arange = range;
+      __name__ = "__main__";
+      type = pytype;
+      scene = canvas();
+      fontloading();
+      await waitforfonts();
+      var strings = RS_modules.pythonize.strings;
+
+      strings();
+      var random = RS_modules.random;
+
+      "4";
+      k1 = GS_power(pi, 2);
+      "5";
+      M1 = 0;
+      "6";
+      m = .07;
+      "7";
+      eq = vector(0, 8["-u"](), 0);
+      "8";
+      t = 0;
+      "9";
+      dt = .001;
+      "10";
+      eq.y = 8["-u"]()["-"](M1["+"](m["/"](2))["*"](g)["/"](k1));
+      "11";
+      g = 9.8;
+      "14";
+      scene1 = RS_interpolate_kwargs.call(this, canvas, [RS_desugar_kwargs({center: vector(0, 8["-u"](), 0), background: color.white, width: 800, height: 500})]);
+      "15";
+      mass = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: eq, axis: vector(1, 0, 0), size: vector(.01, .01, .01), velocity: vector(0, 0, 0), visible: false, pickable: false})]);
+      "17";
+      mass1e = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(5["-u"](), 19["-u"](), 0), axis: vector(0, 1.5["-u"](), 0), radius: .8, color: vector(229["/"](255), 137["/"](255), 57["/"](255))})]);
+      "18";
+      t1 = RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: mass1e.pos["+"](vector(0, .75["-u"](), 1)), color: color.black, text: "50 g", height: .3, depth: 0})]);
+      "19";
+      mass1 = compound(RS_list_decorate([ mass1e, t1 ]));
+      "20";
+      mass1e.visible = false;
+      "21";
+      t1.visible = false;
+      "22";
+      t1 = undefined;
+      "23";
+      mass1e = undefined;
+      "24";
+      mass1.pos.z = 0;
+      "25";
+      mass1.mass = random.uniform(49.9, 50.1)["/"](1e3);
+      "26";
+      mass2e = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(7["-u"](), 19["-u"](), 0), axis: vector(0, 1.3["-u"](), 0), radius: .8, color: vector(229["/"](255), 123["/"](255), 57["/"](255))})]);
+      "27";
+      t2 = RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: mass2e.pos["+"](vector(0, 1.3["-u"]()["/"](2), 1)), color: color.black, text: "40 g", height: .3, depth: 0})]);
+      "28";
+      mass2 = compound(RS_list_decorate([ mass2e, t2 ]));
+      "29";
+      mass2e.visible = false;
+      "30";
+      t2.visible = false;
+      "31";
+      mass2e = undefined;
+      "32";
+      t2 = undefined;
+      "33";
+      mass2.pos.z = 0;
+      "34";
+      mass2.mass = random.uniform(39.9, 40.1)["/"](1e3);
+      "35";
+      mass3e = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(9["-u"](), 19["-u"](), 0), axis: vector(0, 1.1["-u"](), 0), radius: .8, color: vector(229["/"](255), 109["/"](255), 57["/"](255))})]);
+      "36";
+      t3 = RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: mass3e.pos["+"](vector(0, 1.1["-u"]()["/"](2), 1)), color: color.black, text: "30 g", height: .3, depth: 0})]);
+      "37";
+      mass3 = compound(RS_list_decorate([ mass3e, t3 ]));
+      "38";
+      mass3e.visible = false;
+      "39";
+      t3.visible = false;
+      "40";
+      mass3e = undefined;
+      "41";
+      t3 = undefined;
+      "42";
+      mass3.pos.z = 0;
+      "43";
+      mass3.mass = random.uniform(29.9, 30.1)["/"](1e3);
+      "44";
+      mass4e = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(11["-u"](), 19["-u"](), 0), axis: vector(0, .9["-u"](), 0), radius: .8, color: vector(229["/"](255), 91["/"](255), 57["/"](255))})]);
+      "45";
+      t4 = RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: mass4e.pos["+"](vector(0, .9["-u"]()["/"](2), 1)), color: color.black, text: "20 g", height: .3, depth: 0})]);
+      "46";
+      mass4 = compound(RS_list_decorate([ mass4e, t4 ]));
+      "47";
+      mass4e.visible = false;
+      "48";
+      t4.visible = false;
+      "49";
+      mass4e = undefined;
+      "50";
+      t4 = undefined;
+      "51";
+      mass4.pos.z = 0;
+      "52";
+      mass4.mass = random.uniform(19.9, 20.1);
+      "53";
+      mass5e = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(13["-u"](), 19["-u"](), 0), axis: vector(0, .7["-u"](), 0), radius: .8, color: vector(229["/"](255), 57["/"](255), 57["/"](255))})]);
+      "54";
+      t5 = RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: mass5e.pos["+"](vector(0, .7["-u"]()["/"](2), 1)), color: color.black, text: "10 g", height: .3, depth: 0})]);
+      "55";
+      mass5 = compound(RS_list_decorate([ mass5e, t5 ]));
+      "56";
+      mass5e.visible = false;
+      "57";
+      t5.visible = false;
+      "58";
+      mass5e = undefined;
+      "59";
+      t5 = undefined;
+      "60";
+      mass5.pos.z = 0;
+      "61";
+      mass5.mass = random.uniform(9.9, 10.1);
+      "62";
+      mass1.pos = vector(5["-u"](), 19.75["-u"](), 0);
+      "63";
+      mass2.pos = vector(7["-u"](), 19.75["-u"](), 0);
+      "64";
+      mass3.pos = vector(9["-u"](), 19.75["-u"](), 0);
+      "65";
+      mass4.pos = vector(11["-u"](), 19.75["-u"](), 0);
+      "66";
+      mass5.pos = vector(13["-u"](), 19.75["-u"](), 0);
+      "67";
+      v = RS_interpolate_kwargs.call(this, arrow, [RS_desugar_kwargs({pos: vector(4["-u"](), 0, 0), axis: vector(3.5, 0, 0), shaftwidth: .1, length: 2, visible: false, color: color.red})]);
+      "69";
+      eq.y = 8["-u"]();
+      "70";
+      rul = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(2, 8.4["-u"](), 0), axis: vector(1, 0, 0), size: vector(1.3, 16.13, .1), color: vector(12["/"](255), 184["/"](255), 252["/"](255))})]);
+      "71";
+      c = color.black;
+      "72";
+      a = RS_list_decorate([ RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.7, .02["-u"]()["+"](eq.y), 0), axis: vector(1, 0, 0), size: vector(.7, .04["-u"](), .1), color: c})]) ]);
+      "73";
+      L = RS_list_decorate([ RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: vector(2.1, .2["-u"]()["+"](eq.y), .2), text: "0", height: .3, color: c, depth: 0})]) ]);
+      "74";
+      for (var RS_Index6 = 1; RS_Index6["<"](eq.y["-u"]()["-"](.4)["*"](10)["+"](1)); RS_Index6++) {
+          n = RS_Index6;
+          "75";
+          if (RS_equals(n["%"](10), 0)) {
+              "76";
+              a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.7, .02["-u"]()["+"](eq.y)["+"](n["*"](.1)), 0), axis: vector(1, 0, 0), size: vector(.7, .04["-u"](), .1), color: c})]));
+              "77";
+              d = n["*"](.1);
+              "78";
+              d = str(d);
+              "79";
+              L.append(RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: vector(2.1, .2["-u"]()["+"](eq.y)["+"](n["*"](.1)), .2), text: d, height: .3, color: c, depth: 0})]));
+              "80";
+          } else if (RS_equals(n["%"](5), 0)) {
+              "81";
+              a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.6, .02["-u"]()["+"](eq.y)["+"](n["*"](.1)), 0), axis: vector(1, 0, 0), size: vector(.5, .04["-u"](), .1), color: c})]));
+              "82";
+          } else {
+              "83";
+              a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.5, .02["-u"]()["+"](eq.y)["+"](.1["*"](n)), 0), axis: vector(1, 0, 0), size: vector(.3, .04["-u"](), .1), color: c})]));
+          }
+      }
+      "84";
+      for (var RS_Index7 = 1; RS_Index7["<"](16.4["+"](eq.y)["*"](10)["+"](1)); RS_Index7++) {
+          n = RS_Index7;
+          "85";
+          if (RS_equals(n["%"](10), 0)) {
+              "86";
+              a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.7, .02["-u"]()["+"](eq.y)["-"](n["*"](.1)), 0), axis: vector(1, 0, 0), size: vector(.7, .04["-u"](), .1), color: c})]));
+              "87";
+              d = n["*"](.1);
+              "88";
+              d = str(d);
+              "89";
+              L.append(RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: vector(2.1, .2["-u"]()["+"](eq.y)["-"](n["*"](.1)), .2), text: d, height: .3, color: c, depth: 0})]));
+              "90";
+          } else if (RS_equals(n["%"](5), 0)) {
+              "91";
+              a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.6, .02["-u"]()["+"](eq.y)["-"](n["*"](.1)), 0), axis: vector(1, 0, 0), size: vector(.5, .04["-u"](), .1), color: c})]));
+              "92";
+          } else {
+              "93";
+              a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.5, .02["-u"]()["+"](eq.y)["-"](.1["*"](n)), 0), axis: vector(1, 0, 0), size: vector(.3, .04["-u"](), .1), color: c})]));
+          }
+      }
+      "94";
+      ruller = compound(RS_list_decorate([ rul, L[0], L[1], L[2], L[3], L[4], L[5], L[6], L[7], L[8], L[9], L[10], L[11], L[12], L[13], L[14], L[15], a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8], a[9], a[10], a[11], a[12], a[13], a[14], a[15], a[16], a[17], a[18], a[19], a[20], a[21], a[22], a[23], a[24], a[25], a[26], a[27], a[28], a[29], a[30], a[31], a[32], a[33], a[34], a[35], a[36], a[37], a[38], a[39], a[40], a[41], a[42], a[43], a[44], a[45], a[46], a[47], a[48], a[49], a[50], a[51], a[52], a[53], a[54], a[55], a[56], a[57], a[58], a[59], a[60], a[61], a[62], a[63], a[64], a[65], a[66], a[67], a[68], a[69], a[70], a[71], a[72], a[73], a[74], a[75], a[76], a[77], a[78], a[79], a[80], a[81], a[82], a[83], a[84], a[85], a[86], a[87], a[88], a[89], a[90], a[91], a[92], a[93], a[94], a[95], a[96], a[97], a[98], a[99], a[100], a[101], a[102], a[103], a[104], a[105], a[106], a[107], a[108], a[109], a[110], a[111], a[112], a[113], a[114], a[115], a[116], a[117], a[118], a[119], a[120], a[121], a[122], a[123], a[124], a[125], a[126], a[127], a[128], a[129], a[130], a[131], a[132], a[133], a[134], a[135], a[136], a[137], a[138], a[139], a[140], a[141], a[142], a[143], a[144], a[145], a[146], a[147], a[148], a[149], a[150], a[151], a[152], a[153], a[154], a[155], a[156], a[157], a[158], a[159], a[160] ]));
+      "95";
+      ruller.pickable = false;
+      "96";
+      rul.visible = false;
+      "97";
+      rul = undefined;
+      "98";
+      var RS_Iter8 = range(len(a));
+      RS_Iter8 = ((typeof RS_Iter8[Symbol.iterator] === "function") ? (RS_Iter8 instanceof Map ? RS_Iter8.keys() : RS_Iter8) : Object.keys(RS_Iter8));
+      for (var RS_Index8 of RS_Iter8) {
+          i = RS_Index8;
+          "99";
+          a[0].visible = false;
+          "100";
+          RS_delitem(a, 0);
+      }
+      "101";
+      var RS_Iter9 = range(len(L));
+      RS_Iter9 = ((typeof RS_Iter9[Symbol.iterator] === "function") ? (RS_Iter9 instanceof Map ? RS_Iter9.keys() : RS_Iter9) : Object.keys(RS_Iter9));
+      for (var RS_Index9 of RS_Iter9) {
+          i = RS_Index9;
+          "102";
+          L[0].visible;
+          "103";
+          RS_delitem(L, 0);
+      }
+      "105";
+      paye1 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(9.5, 1, 0), radius: .2, axis: vector(0, 19["-u"](), 0), color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
+      "106";
+      sh = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(9.5, 0, .2), axis: vector(0, 1, 0), size: vector(.6, 1, .1), color: color.black, pickable: false})]);
+      "107";
+      s = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(10, .1, 0), axis: vector(.5, 0, 0), radius: .1, color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
+      "108";
+      pich1 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(10.5, .1, 0), axis: vector(.1, 0, 0), radius: .2, pickable: false})]);
+      "109";
+      roof = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(.5["-u"](), .1, 0), axis: vector(9.5, 0, 0), radius: .1, color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
+      "110";
+      sh1 = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(9.5, 2["-u"](), .2), axis: vector(0, 1, 0), size: vector(.6, 1, .1), color: color.black, pickable: false})]);
+      "111";
+      s1 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(10, 1.9["-u"](), 0), axis: vector(.5, 0, 0), radius: .1, color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
+      "112";
+      pich2 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(10.5, 1.9["-u"](), 0), axis: vector(.1, 0, 0), radius: .2})]);
+      "113";
+      roof1 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(3.1, 1.9["-u"](), 0), axis: vector(7.4, 0, 0), radius: .06, color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
+      "114";
+      E1 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(2.75, 1.9["-u"](), 0), axis: vector(3.1, 0, 0), radius: .06, color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
+      "115";
+      E2 = RS_interpolate_kwargs.call(this, extrusion, [RS_desugar_kwargs({path: await RS_interpolate_kwargs.call(paths, paths.arc, [RS_desugar_kwargs({radius: .5, angle2: pi})]), color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false, shape: RS_list_decorate([ RS_list_decorate([ await RS_interpolate_kwargs.call(shapes, shapes.circle, [RS_desugar_kwargs({pos: RS_list_decorate([ 0, 0 ]), radius: .06})]) ]) ])})]);
+      "117";
+      E2.axis = vector(0, 0, 1);
+      "118";
+      E2.pos = vector(2.9, 0, 1.9);
+      "119";
+      await RS_interpolate_kwargs.call(E2, E2.rotate, [RS_desugar_kwargs({angle: pi["/"](2), axis: vec(1, 0, 0), origin: vector(0, 0, 0)})]);
+      "122";
+      b1 = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(2.4, 1.9["-u"]()["-"](.56)["+"](.03), .1), axis: vector(1, 0, 0), size: vector(.6, .1, .1), color: vector(178["/"](255), 62["/"](255), 62["/"](255)), pickable: false})]);
+      "123";
+      b2 = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(2.4, 1.9["-u"]()["-"](.56)["+"](1.03), .1), axis: vector(1, 0, 0), size: vector(.6, .1, .1), color: vector(178["/"](255), 62["/"](255), 62["/"](255)), pickable: false})]);
+      "124";
+      b3 = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(2.7, 1.9["-u"]()["-"](.56)["+"](.53), .1), axis: vector(1, 0, 0), size: vector(.1, .1, .1), color: vector(178["/"](255), 62["/"](255), 62["/"](255)), pickable: false})]);
+      "125";
+      b4 = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.3, 1.9["-u"]()["-"](.56)["+"](.53), .1), axis: vector(1, 0, 0), size: vector(.1, .1, .1), color: vector(178["/"](255), 62["/"](255), 62["/"](255)), pickable: false})]);
+      "126";
+      ground = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(4.2, 18.5["-u"](), 0), axis: vector(1, 0, 0), size: vector(14, .8, .1), color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
+      "127";
+      spring = RS_interpolate_kwargs.call(this, helix, [RS_desugar_kwargs({pos: vector(0, 0, 0), axis: vector(0, 8["-u"](), 0), radius: .8, coils: 15, color: color.gray(.1), thickness: .07})]);
+      "128";
+      S = compound(RS_list_decorate([ paye1, sh, s, pich1, roof, sh1, s1, pich2, roof1, E1, E2, b1, b2, b3, b4, ground ]));
+      "129";
+      S.pickable = false;
+      "130";
+      paye1.visible = false;
+      "131";
+      paye1 = undefined;
+      "132";
+      sh.visible = false;
+      "133";
+      sh = undefined;
+      "134";
+      s.visible = false;
+      "135";
+      s = undefined;
+      "136";
+      pich1.visible = false;
+      "137";
+      pich1 = undefined;
+      "138";
+      roof.visible = false;
+      "139";
+      roof = undefined;
+      "140";
+      sh1.visible = false;
+      "141";
+      sh1 = undefined;
+      "142";
+      s1.visible = false;
+      "143";
+      s1 = undefined;
+      "144";
+      pich2.visible = false;
+      "145";
+      pich2 = undefined;
+      "146";
+      roof1.visible = false;
+      "147";
+      roof1 = undefined;
+      "148";
+      E1.visible = false;
+      "149";
+      E1 = undefined;
+      "150";
+      E2.visible = false;
+      "151";
+      E2 = undefined;
+      "152";
+      b1.visible = false;
+      "153";
+      b1 = undefined;
+      "154";
+      b2.visible = false;
+      "155";
+      b2 = undefined;
+      "156";
+      b3.visible = false;
+      "157";
+      b3 = undefined;
+      "158";
+      b4.visible = false;
+      "159";
+      b4 = undefined;
+      "160";
+      ground.visible = false;
+      "161";
+      ground = undefined;
+      "163";
+      async function down() {
+          "164";
+          "165";
+          obj = scene1.mouse.pick();
+          "166";
+          drag = true;
+      };
+      if (!down.__module__) Object.defineProperties(down, {
+          __module__ : {value: null}
+      });
+
+      "168";
+      async function move() {
+          var RS_ls, running;
+          "169";
+          "170";
+          if (drag) {
+              "171";
+              if ((obj.pos.y !== eq.y && (typeof obj.pos.y !== "object" || RS_not_equals(obj.pos.y, eq.y))) && (obj.pos.x !== eq.x && (typeof obj.pos.x !== "object" || RS_not_equals(obj.pos.x, eq.x)))) {
+                  "172";
+                  obj.pos.x = scene1.mouse.pos.x;
+                  "173";
+                  obj.pos.y = scene1.mouse.pos.y;
+                  "174";
+              } else {
+                  "175";
+                  mass = obj;
+                  "176";
+                  M1 = obj.mass;
+                  "177";
+                  obj.pos.x = 0;
+                  "178";
+                  obj.pos.y = scene1.mouse.pos.y;
+                  "179";
+                  spring.axis = obj.pos;
+                  "180";
+                  obj.velocity = vector(0, 0, 0);
+                  "181";
+              }
+              if (mass.pos.y[">"](.5["-u"]()) || mass.pos.y["<"](15.5["-u"]())) {
+                  "182";
+                  running = false;
+                  "183";
+                  Error.text = "Error: Mass position has to be between 0 and 15 .";
+                  "184";
+                  mass.pos.y = 10["-u"]();
+                  "185";
+                  spring.axis = mass.pos;
+                  "186";
+              } else {
+                  "187";
+                  Error.text = "No Error";
+              }
+          }
+      };
+      if (!move.__module__) Object.defineProperties(move, {
+          __module__ : {value: null}
+      });
+
+      "188";
+      async function up() {
+          "189";
+          "191";
+          drag = false;
+      };
+      if (!up.__module__) Object.defineProperties(up, {
+          __module__ : {value: null}
+      });
+
+      "193";
+      running = false;
+      "194";
+      async function Run(b) {
+          "195";
+          "196";
+          running = !running;
+          "197";
+          if (running) {
+              b.text = "Pause";
+          } else {
+              b.text = "Run";
+          }
+      };
+      if (!Run.__argnames__) Object.defineProperties(Run, {
+          __argnames__ : {value: ["b"]},
+          __module__ : {value: null}
+      });
+
+      "199";
+      RS_interpolate_kwargs.call(this, button, [RS_desugar_kwargs({text: "Run", bind: Run})]);
+      "201";
+      async function Clear(c) {
+          "202";
+          "203";
+          t = 0;
+          "204";
+          eq = vector(0, 8["-u"]()["-"](M1["+"](m["/"](2))["*"](g)["/"](k1)), 0);
+          "205";
+          mass.pos = eq;
+          "206";
+          spring.axis = mass.pos;
+          "207";
+          mass.velocity = vector(0, 0, 0);
+          "208";
+          v.visible = false;
+          "209";
+          W1.text = "Elapsed time : 0";
+      };
+      if (!Clear.__argnames__) Object.defineProperties(Clear, {
+          __argnames__ : {value: ["c"]},
+          __module__ : {value: null}
+      });
+
+      "210";
+      RS_interpolate_kwargs.call(this, button, [RS_desugar_kwargs({text: "Clear", bind: Clear})]);
+      "212";
+      async function Reset(c) {
+          "213";
+          "214";
+          t = 0;
+          "215";
+          M1 = 0;
+          "216";
+          mass1.pos = vector(5["-u"](), 19.75["-u"](), 0);
+          "217";
+          mass2.pos = vector(7["-u"](), 19.75["-u"](), 0);
+          "218";
+          mass3.pos = vector(9["-u"](), 19.75["-u"](), 0);
+          "219";
+          mass4.pos = vector(11["-u"](), 19.75["-u"](), 0);
+          "220";
+          mass5.pos = vector(13["-u"](), 19.75["-u"](), 0);
+          "221";
+          mass = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: eq, axis: vector(1, 0, 0), size: vector(.01, .01, .01), velocity: vector(0, 0, 0), visible: false})]);
+          "222";
+          eq = vector(0, 8["-u"]()["-"](M1["+"](m["/"](2))["*"](g)["/"](k1)), 0);
+          "223";
+          spring.axis = vector(0, eq.y, 0);
+          "224";
+          mass.velocity = vector(0, 0, 0);
+          "225";
+          v.visible = false;
+          "226";
+          W1.text = "Elapsed time : 0";
+      };
+      if (!Reset.__argnames__) Object.defineProperties(Reset, {
+          __argnames__ : {value: ["c"]},
+          __module__ : {value: null}
+      });
+
+      "227";
+      RS_interpolate_kwargs.call(this, button, [RS_desugar_kwargs({text: "Reset", bind: Reset})]);
+      "228";
+      scene1.append_to_caption("\n\n");
+      "230";
+      async function Springs1(c) {
+          "231";
+          "232";
+          if ((r1.checked === true || typeof r1.checked === "object" && RS_equals(r1.checked, true))) {
+              "233";
+              k1 = GS_power(pi, 2);
+              "234";
+              spring.color = color.gray(.1);
+              "235";
+              spring.radius = .8;
+              "236";
+              spring.thickness = .1;
+              "237";
+              r2.checked = false;
+          }
+      };
+      if (!Springs1.__argnames__) Object.defineProperties(Springs1, {
+          __argnames__ : {value: ["c"]},
+          __module__ : {value: null}
+      });
+
+      "238";
+      async function Springs2(c) {
+          "239";
+          "240";
+          if ((r2.checked === true || typeof r2.checked === "object" && RS_equals(r2.checked, true))) {
+              "241";
+              k1 = 2;
+              "242";
+              spring.color = color.gray(.8);
+              "243";
+              spring.radius = .6;
+              "244";
+              spring.thickness = .05;
+              "245";
+              r1.checked = false;
+          }
+      };
+      if (!Springs2.__argnames__) Object.defineProperties(Springs2, {
+          __argnames__ : {value: ["c"]},
+          __module__ : {value: null}
+      });
+
+      "246";
+      r1 = RS_interpolate_kwargs.call(this, radio, [RS_desugar_kwargs({bind: Springs1, checked: true, text: "First Spring"})]);
+      "247";
+      r2 = RS_interpolate_kwargs.call(this, radio, [RS_desugar_kwargs({bind: Springs2, text: "Second Spring"})]);
+      "248";
+      scene1.append_to_caption("\n\n");
+      "251";
+      W1 = RS_interpolate_kwargs.call(this, wtext, [RS_desugar_kwargs({text: "Elapsed time : 0"})]);
+      "252";
+      scene1.append_to_caption("\n\n");
+      "254";
+      Error = RS_interpolate_kwargs.call(this, wtext, [RS_desugar_kwargs({text: "No Error"})]);
+      "255";
+      while (true) {
+          "256";
+          scene1.bind("mousedown", down);
+          "258";
+          scene1.bind("mousemove", move);
+          "260";
+          scene1.bind("mouseup", up);
+          "262";
+          if ((t === 0 || typeof t === "object" && RS_equals(t, 0))) {
+              "263";
+              r1.disabled = false;
+              "264";
+              r2.disabled = false;
+              "265";
+              eq.y = 8["-u"]()["-"](M1["+"](m["/"](2))["*"](g)["/"](k1));
+              "266";
+              if (eq.y["<"](10["-u"]())) {
+                  "267";
+                  Error.text = "Error : Change g";
+                  "268";
+                  eq.y = 8["-u"]();
+                  "269";
+              } else {
+                  "270";
+                  ruller.pos.y = eq.y["-"](.4);
+                  "271";
+              }
+          } else {
+              "272";
+              r1.disabled = true;
+              "273";
+              r2.disabled = true;
+          }
+          "275";
+          ;(await rate(1e3));
+          "276";
+          if (running) {
+              "277";
+              mass.pos = mass.velocity["*"](dt)["+"](mass.pos);
+              "278";
+              mass.velocity = k1["/"](M1["+"](m["/"](3)))["*"](eq["-"](mass.pos))["-"](g["*"](vector(0, 1, 0)))["*"](dt)["+"](mass.velocity);
+              "279";
+              spring.axis = mass.pos;
+              "280";
+              t = t["+"](dt);
+              "281";
+              v.visible = true;
+              "282";
+              v.pos = mass.pos;
+              "Timer";
+              "284";
+              t1 = str(t);
+              "285";
+              s = t1.find(".");
+              "286";
+              t1 = t1.slice(0, s["+"](3));
+              "287";
+              W1.text = ["Elapsed time :", t1];
+          }
+          "288";
+          k = keysdown();
+          "289";
+          if (RS_in("up", k)) {
+              scene1.center = scene1.center["+"](vector(0, .01, 0));
+          }
+          "290";
+          if (RS_in("down", k)) {
+              scene1.center = scene1.center["+"](vector(0, .01["-u"](), 0));
+          }
+          "291";
+          if (RS_in("left", k)) {
+              scene1.center = scene1.center["+"](vector(.01["-u"](), 0, 0));
+          }
+          "292";
+          if (RS_in("right", k)) {
+              scene1.center = scene1.center["+"](vector(.01, 0, 0));
+          }
+      }
+  };
+  if (!__main__.__module__) Object.defineProperties(__main__, {
+      __module__ : {value: null}
+  });
+
+  ;$(function(){ window.__context = { glowscript_container: $("#glowscript").removeAttr("id") }; __main__() })})()
+  // END JAVASCRIPT
+
+  //--><!]]></script>
+  </div>
+<form name="sci-calc">
+<table class="calculator" cellspacing="0" cellpadding="1" align="right" valign="middle">
+<tr>
+<td colspan="5"><input id="display" name="display" value="0" size="28" maxlength="25"></td>
+</tr>
+<tr>
+<td><input type="button" class="btnTop" name="btnTop" value="C" onclick="this.form.display.value=  0 "></td>
+<td><input type="button" class="btnTop" name="btnTop" value="<--" onclick="deleteChar(this.form.display)"></td>
+<td><input type="button" class="btnTop" name="btnTop" value="=" onclick="if(checkNum(this.form.display.value)) { compute(this.form) }"></td>
+<td><input type="button" class="btnOpps" name="btnOpps" value="&#960;" onclick="addChar(this.form.display,'3.14159265359')"></td>
+<td><input type="button" class="btnMath" name="btnMath" value="%" onclick=" percent(this.form.display)"></td>
+</tr>
+<tr>
+<td><input type="button" class="btnNum" name="btnNum" value="7" onclick="addChar(this.form.display, '7')"></td>
+<td><input type="button" class="btnNum" name="btnNum" value="8" onclick="addChar(this.form.display, '8')"></td>
+<td><input type="button" class="btnNum" name="btnNum" value="9" onclick="addChar(this.form.display, '9')"></td>
+<td><input type="button" class="btnOpps" name="btnOpps" value="exp" onclick="if(checkNum(this.form.display.value)) { exp(this.form) }"></td>
+<td><input type="button" class="btnMath" name="btnMath" value="/" onclick="addChar(this.form.display, '/')"></td>
+<tr>
+<td><input type="button" class="btnNum" name="btnNum" value="4" onclick="addChar(this.form.display, '4')"></td>
+<td><input type="button" class="btnNum" name="btnNum" value="5" onclick="addChar(this.form.display, '5')"></td>
+<td><input type="button" class="btnNum" name="btnNum" value="6" onclick="addChar(this.form.display, '6')"></td>
+<td><input type="button" class="btnOpps" name="btnOpps" value="ln" onclick="if(checkNum(this.form.display.value)) { ln(this.form) }"></td>
+<td><input type="button" class="btnMath" name="btnMath" value="*" onclick="addChar(this.form.display, '*')"></td>
+</tr>
+<tr>
+<td><input type="button" class="btnNum" name="btnNum" value="1" onclick="addChar(this.form.display, '1')"></td>
+<td><input type="button" class="btnNum" name="btnNum" value="2" onclick="addChar(this.form.display, '2')"></td>
+<td><input type="button" class="btnNum" name="btnNum" value="3" onclick="addChar(this.form.display, '3')"></td>
+<td><input type="button" class="btnOpps" name="btnOpps" value="&radic;" onclick="if(checkNum(this.form.display.value)) { sqrt(this.form) }"></td>
+<td><input type="button" class="btnMath" name="btnMath" value="-" onclick="addChar(this.form.display, '-')"></td>
+</tr>
+<tr>
+<td><input type="button" class="btnMath" name="btnMath" value="&#177" onclick="changeSign(this.form.display)"></td>
+<td><input type="button" class="btnNum" name="btnNum" value="0" onclick="addChar(this.form.display, '0')"></td>
+<td><input type="button" class="btnMath" name="btnMath" value="&#46;" onclick="addChar(this.form.display, '&#46;')"></td>
+<td><input type="button" class="btnOpps" name="btnOpps" value="x&#50;" onclick="if(checkNum(this.form.display.value)) { square(this.form) }"></td>
+<td><input type="button" class="btnMath" name="btnMath" value="+" onclick="addChar(this.form.display, '+')"></td>
+</tr>
+<tr>
+<td><input type="button" class="btnMath" name="btnMath" value="(" onclick="addChar(this.form.display, '(')"></td>
+<td><input type="button" class="btnMath" name="btnMath" value=")" onclick="addChar(this.form.display,')')"></td>
+<td><input type="button" class="btnMath" name="btnMath" value="cos" onclick="if(checkNum(this.form.display.value)) { cos(this.form) }"></td>
+<td><input type="button" class="btnMath" name="btnMath" value="sin" onclick="if(checkNum(this.form.display.value)) { sin(this.form) }"></td>
+<td><input type="button" class="btnMath" name="btnMath" value="tan" onclick="if(checkNum(this.form.display.value)) { tan(this.form) }"></td>
+</tr>
+</tabel>
+</form>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js"></script>
+<script id="rendered-js">
+function addChar(input, character) {
+  if (input.value == null || input.value == "0")
+  input.value = character;else
+
+  input.value += character;
+}
+
+function cos(form) {
+  form.display.value = Math.cos(form.display.value);
+}
+
+function sin(form) {
+  form.display.value = Math.sin(form.display.value);
+}
+
+function tan(form) {
+  form.display.value = Math.tan(form.display.value);
+}
+
+function sqrt(form) {
+  form.display.value = Math.sqrt(form.display.value);
+}
+
+function ln(form) {
+  form.display.value = Math.log(form.display.value);
+}
+
+function exp(form) {
+  form.display.value = Math.exp(form.display.value);
+}
+
+function deleteChar(input) {
+  input.value = input.value.substring(0, input.value.length - 1);
+}
+var val = 0.0;
+function percent(input) {
+  val = input.value;
+  input.value = input.value + "%";
+}
+
+function changeSign(input) {
+  if (input.value.substring(0, 1) == "-")
+  input.value = input.value.substring(1, input.value.length);else
+
+  input.value = "-" + input.value;
+}
+
+function compute(form) {
+  //if (val !== 0.0) {
+  // var percent = form.display.value;
+  // percent = pcent.substring(percent.indexOf("%")+1);
+  // form.display.value = parseFloat(percent)/100 * val;
+  //val = 0.0;
+  // } else
+  form.display.value = eval(form.display.value);
+}
+
+
+function square(form) {
+  form.display.value = eval(form.display.value) * eval(form.display.value);
+}
+
+function checkNum(str) {
+  for (var i = 0; i < str.length; i++) {if (window.CP.shouldStopExecution(0)) break;
+    var ch = str.charAt(i);
+    if (ch < "0" || ch > "9") {
+      if (ch != "/" && ch != "*" && ch != "+" && ch != "-" && ch != "." &&
+      ch != "(" && ch != ")" && ch != "%") {
+        alert("invalid entry!");
+        return false;
+      }
     }
-    "78";
-    for (var RS_Index2 = 1; RS_Index2["<"](16.4["+"](eq.y)["*"](10)["+"](1)); RS_Index2++) {
-        n = RS_Index2;
-        "79";
-        if (RS_equals(n["%"](10), 0)) {
-            "80";
-            a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.7, .02["-u"]()["+"](eq.y)["-"](n["*"](.1)), 0), axis: vector(1, 0, 0), size: vector(.7, .04["-u"](), .1), color: c})]));
-            "81";
-            d = n["*"](.1);
-            "82";
-            d = str(d);
-            "83";
-            L.append(RS_interpolate_kwargs.call(this, text, [RS_desugar_kwargs({pos: vector(2.1, .2["-u"]()["+"](eq.y)["-"](n["*"](.1)), .2), text: d, height: .3, color: c, depth: 0})]));
-            "84";
-        } else if (RS_equals(n["%"](5), 0)) {
-            "85";
-            a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.6, .02["-u"]()["+"](eq.y)["-"](n["*"](.1)), 0), axis: vector(1, 0, 0), size: vector(.5, .04["-u"](), .1), color: c})]));
-            "86";
-        } else {
-            "87";
-            a.append(RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.5, .02["-u"]()["+"](eq.y)["-"](.1["*"](n)), 0), axis: vector(1, 0, 0), size: vector(.3, .04["-u"](), .1), color: c})]));
-        }
-    }
-    "88";
-    ruller = compound(RS_list_decorate([ rul, L[0], L[1], L[2], L[3], L[4], L[5], L[6], L[7], L[8], L[9], L[10], L[11], L[12], L[13], L[14], L[15], a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8], a[9], a[10], a[11], a[12], a[13], a[14], a[15], a[16], a[17], a[18], a[19], a[20], a[21], a[22], a[23], a[24], a[25], a[26], a[27], a[28], a[29], a[30], a[31], a[32], a[33], a[34], a[35], a[36], a[37], a[38], a[39], a[40], a[41], a[42], a[43], a[44], a[45], a[46], a[47], a[48], a[49], a[50], a[51], a[52], a[53], a[54], a[55], a[56], a[57], a[58], a[59], a[60], a[61], a[62], a[63], a[64], a[65], a[66], a[67], a[68], a[69], a[70], a[71], a[72], a[73], a[74], a[75], a[76], a[77], a[78], a[79], a[80], a[81], a[82], a[83], a[84], a[85], a[86], a[87], a[88], a[89], a[90], a[91], a[92], a[93], a[94], a[95], a[96], a[97], a[98], a[99], a[100], a[101], a[102], a[103], a[104], a[105], a[106], a[107], a[108], a[109], a[110], a[111], a[112], a[113], a[114], a[115], a[116], a[117], a[118], a[119], a[120], a[121], a[122], a[123], a[124], a[125], a[126], a[127], a[128], a[129], a[130], a[131], a[132], a[133], a[134], a[135], a[136], a[137], a[138], a[139], a[140], a[141], a[142], a[143], a[144], a[145], a[146], a[147], a[148], a[149], a[150], a[151], a[152], a[153], a[154], a[155], a[156], a[157], a[158], a[159], a[160] ]));
-    "89";
-    ruller.pickable = false;
-    "90";
-    rul.visible = false;
-    "91";
-    rul = undefined;
-    "92";
-    var RS_Iter3 = range(len(a));
-    RS_Iter3 = ((typeof RS_Iter3[Symbol.iterator] === "function") ? (RS_Iter3 instanceof Map ? RS_Iter3.keys() : RS_Iter3) : Object.keys(RS_Iter3));
-    for (var RS_Index3 of RS_Iter3) {
-        i = RS_Index3;
-        "93";
-        a[0].visible = false;
-        "94";
-        RS_delitem(a, 0);
-    }
-    "95";
-    var RS_Iter4 = range(len(L));
-    RS_Iter4 = ((typeof RS_Iter4[Symbol.iterator] === "function") ? (RS_Iter4 instanceof Map ? RS_Iter4.keys() : RS_Iter4) : Object.keys(RS_Iter4));
-    for (var RS_Index4 of RS_Iter4) {
-        i = RS_Index4;
-        "96";
-        L[0].visible;
-        "97";
-        RS_delitem(L, 0);
-    }
-    "99";
-    paye1 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(9.5, 1, 0), radius: .2, axis: vector(0, 19["-u"](), 0), color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
-    "100";
-    sh = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(9.5, 0, .2), axis: vector(0, 1, 0), size: vector(.6, 1, .1), color: color.black, pickable: false})]);
-    "101";
-    s = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(10, .1, 0), axis: vector(.5, 0, 0), radius: .1, color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
-    "102";
-    pich1 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(10.5, .1, 0), axis: vector(.1, 0, 0), radius: .2, pickable: false})]);
-    "103";
-    roof = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(.5["-u"](), .1, 0), axis: vector(9.5, 0, 0), radius: .1, color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
-    "104";
-    sh1 = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(9.5, 2["-u"](), .2), axis: vector(0, 1, 0), size: vector(.6, 1, .1), color: color.black, pickable: false})]);
-    "105";
-    s1 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(10, 1.9["-u"](), 0), axis: vector(.5, 0, 0), radius: .1, color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
-    "106";
-    pich2 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(10.5, 1.9["-u"](), 0), axis: vector(.1, 0, 0), radius: .2})]);
-    "107";
-    roof1 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(3.1, 1.9["-u"](), 0), axis: vector(7.4, 0, 0), radius: .06, color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
-    "108";
-    E1 = RS_interpolate_kwargs.call(this, cylinder, [RS_desugar_kwargs({pos: vector(2.75, 1.9["-u"](), 0), axis: vector(3.1, 0, 0), radius: .06, color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
-    "109";
-    E2 = RS_interpolate_kwargs.call(this, extrusion, [RS_desugar_kwargs({path: await RS_interpolate_kwargs.call(paths, paths.arc, [RS_desugar_kwargs({radius: .5, angle2: pi})]), color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false, shape: RS_list_decorate([ RS_list_decorate([ await RS_interpolate_kwargs.call(shapes, shapes.circle, [RS_desugar_kwargs({pos: RS_list_decorate([ 0, 0 ]), radius: .06})]) ]) ])})]);
-    "111";
-    E2.axis = vector(0, 0, 1);
-    "112";
-    E2.pos = vector(2.9, 0, 1.9);
-    "113";
-    await RS_interpolate_kwargs.call(E2, E2.rotate, [RS_desugar_kwargs({angle: pi["/"](2), axis: vec(1, 0, 0), origin: vector(0, 0, 0)})]);
-    "116";
-    b1 = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(2.4, 1.9["-u"]()["-"](.56)["+"](.03), .1), axis: vector(1, 0, 0), size: vector(.6, .1, .1), color: vector(178["/"](255), 62["/"](255), 62["/"](255)), pickable: false})]);
-    "117";
-    b2 = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(2.4, 1.9["-u"]()["-"](.56)["+"](1.03), .1), axis: vector(1, 0, 0), size: vector(.6, .1, .1), color: vector(178["/"](255), 62["/"](255), 62["/"](255)), pickable: false})]);
-    "118";
-    b3 = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(2.7, 1.9["-u"]()["-"](.56)["+"](.53), .1), axis: vector(1, 0, 0), size: vector(.1, .1, .1), color: vector(178["/"](255), 62["/"](255), 62["/"](255)), pickable: false})]);
-    "119";
-    b4 = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(1.3, 1.9["-u"]()["-"](.56)["+"](.53), .1), axis: vector(1, 0, 0), size: vector(.1, .1, .1), color: vector(178["/"](255), 62["/"](255), 62["/"](255)), pickable: false})]);
-    "120";
-    ground = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: vector(4.2, 18.5["-u"](), 0), axis: vector(1, 0, 0), size: vector(14, .8, .1), color: vector(229["/"](255), 229["/"](255), 229["/"](255)), pickable: false})]);
-    "121";
-    spring = RS_interpolate_kwargs.call(this, helix, [RS_desugar_kwargs({pos: vector(0, 0, 0), axis: vector(0, 8["-u"](), 0), radius: .8, coils: 15, color: color.gray(.1), thickness: .07})]);
-    "122";
-    S = compound(RS_list_decorate([ paye1, sh, s, pich1, roof, sh1, s1, pich2, roof1, E1, E2, b1, b2, b3, b4, ground ]));
-    "123";
-    S.pickable = false;
-    "124";
-    paye1.visible = false;
-    "125";
-    paye1 = undefined;
-    "126";
-    sh.visible = false;
-    "127";
-    sh = undefined;
-    "128";
-    s.visible = false;
-    "129";
-    s = undefined;
-    "130";
-    pich1.visible = false;
-    "131";
-    pich1 = undefined;
-    "132";
-    roof.visible = false;
-    "133";
-    roof = undefined;
-    "134";
-    sh1.visible = false;
-    "135";
-    sh1 = undefined;
-    "136";
-    s1.visible = false;
-    "137";
-    s1 = undefined;
-    "138";
-    pich2.visible = false;
-    "139";
-    pich2 = undefined;
-    "140";
-    roof1.visible = false;
-    "141";
-    roof1 = undefined;
-    "142";
-    E1.visible = false;
-    "143";
-    E1 = undefined;
-    "144";
-    E2.visible = false;
-    "145";
-    E2 = undefined;
-    "146";
-    b1.visible = false;
-    "147";
-    b1 = undefined;
-    "148";
-    b2.visible = false;
-    "149";
-    b2 = undefined;
-    "150";
-    b3.visible = false;
-    "151";
-    b3 = undefined;
-    "152";
-    b4.visible = false;
-    "153";
-    b4 = undefined;
-    "154";
-    ground.visible = false;
-    "155";
-    ground = undefined;
-    "157";
-    async function down() {
-        "158";
-        "159";
-        obj = scene1.mouse.pick();
-        "160";
-        drag = true;
-    };
-    if (!down.__module__) Object.defineProperties(down, {
-        __module__ : {value: null}
-    });
-
-    "162";
-    async function move() {
-        var RS_ls, running;
-        "163";
-        "164";
-        if (drag) {
-            "165";
-            if ((obj.pos.y !== eq.y && (typeof obj.pos.y !== "object" || RS_not_equals(obj.pos.y, eq.y))) && (obj.pos.x !== eq.x && (typeof obj.pos.x !== "object" || RS_not_equals(obj.pos.x, eq.x)))) {
-                "166";
-                obj.pos.x = scene1.mouse.pos.x;
-                "167";
-                obj.pos.y = scene1.mouse.pos.y;
-                "168";
-            } else {
-                "169";
-                mass = obj;
-                "170";
-                M1 = obj.mass;
-                "171";
-                obj.pos.x = 0;
-                "172";
-                obj.pos.y = scene1.mouse.pos.y;
-                "173";
-                spring.axis = obj.pos;
-                "174";
-                obj.velocity = vector(0, 0, 0);
-                "175";
-            }
-            if (mass.pos.y[">"](.5["-u"]()) || mass.pos.y["<"](15.5["-u"]())) {
-                "176";
-                running = false;
-                "177";
-                Error.text = "Error: Mass position has to be between 0 and 15 .";
-                "178";
-                mass.pos.y = 10["-u"]();
-                "179";
-                spring.axis = mass.pos;
-                "180";
-            } else {
-                "181";
-                Error.text = "No Error";
-            }
-        }
-    };
-    if (!move.__module__) Object.defineProperties(move, {
-        __module__ : {value: null}
-    });
-
-    "182";
-    async function up() {
-        "183";
-        "185";
-        drag = false;
-    };
-    if (!up.__module__) Object.defineProperties(up, {
-        __module__ : {value: null}
-    });
-
-    "187";
-    running = false;
-    "188";
-    async function Run(b) {
-        "189";
-        "190";
-        running = !running;
-        "191";
-        if (running) {
-            b.text = "Pause";
-        } else {
-            b.text = "Run";
-        }
-    };
-    if (!Run.__argnames__) Object.defineProperties(Run, {
-        __argnames__ : {value: ["b"]},
-        __module__ : {value: null}
-    });
-
-    "193";
-    RS_interpolate_kwargs.call(this, button, [RS_desugar_kwargs({text: "Run", bind: Run})]);
-    "195";
-    async function Clear(c) {
-        "196";
-        "197";
-        t = 0;
-        "198";
-        eq = vector(0, 8["-u"]()["-"](M1["+"](m["/"](2))["*"](g)["/"](k1)), 0);
-        "199";
-        mass.pos = eq;
-        "200";
-        spring.axis = mass.pos;
-        "201";
-        mass.velocity = vector(0, 0, 0);
-        "202";
-        v.visible = false;
-        "203";
-        W1.text = "Elapsed time : 0";
-    };
-    if (!Clear.__argnames__) Object.defineProperties(Clear, {
-        __argnames__ : {value: ["c"]},
-        __module__ : {value: null}
-    });
-
-    "204";
-    RS_interpolate_kwargs.call(this, button, [RS_desugar_kwargs({text: "Clear", bind: Clear})]);
-    "206";
-    async function Reset(c) {
-        "207";
-        "208";
-        t = 0;
-        "209";
-        M1 = 0;
-        "210";
-        mass1.pos = vector(5["-u"](), 19.75["-u"](), 0);
-        "211";
-        mass2.pos = vector(7["-u"](), 19.75["-u"](), 0);
-        "212";
-        mass3.pos = vector(9["-u"](), 19.75["-u"](), 0);
-        "213";
-        mass4.pos = vector(11["-u"](), 19.75["-u"](), 0);
-        "214";
-        mass5.pos = vector(13["-u"](), 19.75["-u"](), 0);
-        "215";
-        mass = RS_interpolate_kwargs.call(this, box, [RS_desugar_kwargs({pos: eq, axis: vector(1, 0, 0), size: vector(.01, .01, .01), velocity: vector(0, 0, 0), visible: false})]);
-        "216";
-        eq = vector(0, 8["-u"]()["-"](M1["+"](m["/"](2))["*"](g)["/"](k1)), 0);
-        "217";
-        spring.axis = vector(0, eq.y, 0);
-        "218";
-        mass.velocity = vector(0, 0, 0);
-        "219";
-        v.visible = false;
-        "220";
-        W1.text = "Elapsed time : 0";
-    };
-    if (!Reset.__argnames__) Object.defineProperties(Reset, {
-        __argnames__ : {value: ["c"]},
-        __module__ : {value: null}
-    });
-
-    "221";
-    RS_interpolate_kwargs.call(this, button, [RS_desugar_kwargs({text: "Reset", bind: Reset})]);
-    "222";
-    scene1.append_to_caption("\n\n");
-    "224";
-    async function Springs1(c) {
-        "225";
-        "226";
-        if ((r1.checked === true || typeof r1.checked === "object" && RS_equals(r1.checked, true))) {
-            "227";
-            k1 = GS_power(pi, 2);
-            "228";
-            spring.color = color.gray(.1);
-            "229";
-            spring.radius = .8;
-            "230";
-            spring.thickness = .1;
-            "231";
-            r2.checked = false;
-        }
-    };
-    if (!Springs1.__argnames__) Object.defineProperties(Springs1, {
-        __argnames__ : {value: ["c"]},
-        __module__ : {value: null}
-    });
-
-    "232";
-    async function Springs2(c) {
-        "233";
-        "234";
-        if ((r2.checked === true || typeof r2.checked === "object" && RS_equals(r2.checked, true))) {
-            "235";
-            k1 = 2;
-            "236";
-            spring.color = color.gray(.8);
-            "237";
-            spring.radius = .6;
-            "238";
-            spring.thickness = .05;
-            "239";
-            r1.checked = false;
-        }
-    };
-    if (!Springs2.__argnames__) Object.defineProperties(Springs2, {
-        __argnames__ : {value: ["c"]},
-        __module__ : {value: null}
-    });
-
-    "240";
-    r1 = RS_interpolate_kwargs.call(this, radio, [RS_desugar_kwargs({bind: Springs1, checked: true, text: "First Spring"})]);
-    "241";
-    r2 = RS_interpolate_kwargs.call(this, radio, [RS_desugar_kwargs({bind: Springs2, text: "Second Spring"})]);
-    "242";
-    scene1.append_to_caption("\n\n");
-    "244";
-    async function T1(s) {
-        "245";
-    };
-    if (!T1.__argnames__) Object.defineProperties(T1, {
-        __argnames__ : {value: ["s"]},
-        __module__ : {value: null}
-    });
-
-    ;(await sleep(.2));
-    "246";
-    gravity = RS_interpolate_kwargs.call(this, winput, [RS_desugar_kwargs({bind: T1, prompt: "Enter g : (press ENTER)", text: "0", number: 0})]);
-    "247";
-    g = gravity.number;
-    "248";
-    scene1.append_to_caption("\n\n");
-    "250";
-    W1 = RS_interpolate_kwargs.call(this, wtext, [RS_desugar_kwargs({text: "Elapsed time : 0"})]);
-    "251";
-    scene1.append_to_caption("\n\n");
-    "253";
-    Error = RS_interpolate_kwargs.call(this, wtext, [RS_desugar_kwargs({text: "No Error"})]);
-    "254";
-    while (true) {
-        "255";
-        scene1.bind("mousedown", down);
-        "257";
-        scene1.bind("mousemove", move);
-        "259";
-        scene1.bind("mouseup", up);
-        "261";
-        if ((t === 0 || typeof t === "object" && RS_equals(t, 0))) {
-            "262";
-            r1.disabled = false;
-            "263";
-            r2.disabled = false;
-            "264";
-            gravity.disabled = false;
-            "265";
-            g = gravity.number;
-            "266";
-            eq.y = 8["-u"]()["-"](M1["+"](m["/"](2))["*"](g)["/"](k1));
-            "267";
-            if (eq.y["<"](10["-u"]())) {
-                "268";
-                Error.text = "Error : Change g";
-                "269";
-                eq.y = 8["-u"]();
-                "270";
-            } else {
-                "271";
-                ruller.pos.y = eq.y["-"](.4);
-                "272";
-            }
-        } else {
-            "273";
-            gravity.disabled = true;
-            "274";
-            r1.disabled = true;
-            "275";
-            r2.disabled = true;
-        }
-        "277";
-        ;(await rate(1e3));
-        "278";
-        if (running) {
-            "279";
-            mass.pos = mass.velocity["*"](dt)["+"](mass.pos);
-            "280";
-            mass.velocity = k1["/"](M1["+"](m["/"](3)))["*"](eq["-"](mass.pos))["-"](g["*"](vector(0, 1, 0)))["*"](dt)["+"](mass.velocity);
-            "281";
-            spring.axis = mass.pos;
-            "282";
-            t = t["+"](dt);
-            "283";
-            v.visible = true;
-            "284";
-            v.pos = mass.pos;
-            "Timer";
-            "286";
-            t1 = str(t);
-            "287";
-            s = t1.find(".");
-            "288";
-            t1 = t1.slice(0, s["+"](3));
-            "289";
-            W1.text = ["Elapsed time :", t1];
-        }
-        "290";
-        k = keysdown();
-        "291";
-        if (RS_in("up", k)) {
-            scene1.center = scene1.center["+"](vector(0, .01, 0));
-        }
-        "292";
-        if (RS_in("down", k)) {
-            scene1.center = scene1.center["+"](vector(0, .01["-u"](), 0));
-        }
-        "293";
-        if (RS_in("left", k)) {
-            scene1.center = scene1.center["+"](vector(.01["-u"](), 0, 0));
-        }
-        "294";
-        if (RS_in("right", k)) {
-            scene1.center = scene1.center["+"](vector(.01, 0, 0));
-        }
-    }
-};
-if (!__main__.__module__) Object.defineProperties(__main__, {
-    __module__ : {value: null}
-});
-
-;$(function(){ window.__context = { glowscript_container: $("#glowscript").removeAttr("id") }; __main__() })})()
-// END JAVASCRIPT
-
-//--><!]]></script>
+  }window.CP.exitedLoop(0);
+  return true;
+}
+//# sourceURL=pen.js
+    </script>
 </div>
+</body>
+</html>
