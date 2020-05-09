@@ -10,7 +10,7 @@ body
 body .ideBody
 {
 	margin: 	0 auto;
-	
+
 }
 
 a:link, a:visited, a:hover {
@@ -32,10 +32,10 @@ a:hover {
     padding: 0;
     width: 100%;
     overflow: hidden;
-    background: #5c9ccc url('redmond/IDE/images/ui-bg_gloss-wave_55_5c9ccc_500x100.png') 50% 50% repeat-x; 
-    color: #ffffff; 
+    background: #5c9ccc url('redmond/IDE/images/ui-bg_gloss-wave_55_5c9ccc_500x100.png') 50% 50% repeat-x;
+    color: #ffffff;
     z-index: 10;
-	
+
 }
 
 .headerInner	{
@@ -53,7 +53,7 @@ a:hover {
 .header a { color: #fff; }
 
 
-#pageWrapperIDE	
+#pageWrapperIDE
 {
 			margin:		0 auto;
 			position: 		relative;
@@ -64,18 +64,18 @@ a:hover {
 			padding-bottom:	10px;
 			padding-top:	10px;
 			border:		1px solid #e2e2e2;
-			background:	#fff;	
+			background:	#fff;
 			overflow:		hidden;
-			z-index:		1;		
+			z-index:		1;
 }
 
-#pageWrapperIDE h4	
+#pageWrapperIDE h4
 {
 			margin-top: 20px;
-			margin-bottom: 10px;	
+			margin-bottom: 10px;
 }
 
-img.right		
+img.right
 {
 			float:		right;
 			margin:		5px;
@@ -83,7 +83,7 @@ img.right
 			border:		2px solid #000;
 }
 
-#footerWrap	
+#footerWrap
 {
 			margin:		0 auto;
 			position: 		relative;
@@ -92,11 +92,11 @@ img.right
 			padding-right:	10px;
 			height:		80px;
 			border:		1px solid #bad;
-			background:	#ec5;			
+			background:	#ec5;
 
 
 }
-		
+
 #footerInner
 {
 			position:		relative;
@@ -108,7 +108,7 @@ img.right
 #footerInner a  		{ color: #222; }
 #footerInner a:hover  	{ color: #f41; }
 
-#footerInner h2	
+#footerInner h2
 {
 			margin-top:	0px;
 			margin-bottom: 	6px;
@@ -120,25 +120,25 @@ img.right
 	position:fixed;
 	top:0px;
 	right: 0px;
-    color: #ffffff; 
+    color: #ffffff;
     z-index: 15;
 }
 
 .right-header a { color: #fff; }
 
-.after-header 
+.after-header
 {
 	margin-top: 3.9em;
 }
 
-#ajaxBody 
+#ajaxBody
 {
 	position: absolute;
 	left: 0px; top: 0px; right: 0px;
 	height: 100%;
 }
 
-.help-panel 
+.help-panel
 {
 	position: fixed;
 	top: 0px;
@@ -163,13 +163,13 @@ img.right
 
 .help-panel-inner iframe
 {
-	border-style: none; 
+	border-style: none;
 	border: 0;
 	width: 100%; height: 100%;
 	margin:0; padding:0;
 }
 
-.spacer 
+.spacer
 {
 	margin: 0.4em;
 }
@@ -179,7 +179,7 @@ img.right
 	position:absolute; top:4em; bottom: 3px; left: 3px; right: 3px
 }
 
-.editPage .program-status 
+.editPage .program-status
 {
 }
 
@@ -197,8 +197,8 @@ img.right
 
 .folderPage .programs .program .prog-screenshot
 {
-	float:left; 
-	margin-right:20px; 
+	float:left;
+	margin-right:20px;
 	width:128px;
 	height:90px;
 }
@@ -242,7 +242,7 @@ a.button
 	color: #e00000
 }
 
-.runPage .run-container 
+.runPage .run-container
 {
 	position:absolute;
 	overflow:hidden;
@@ -267,7 +267,7 @@ a.button
 {
 	width: 80%;
 	height: 15em;
-	overflow: scroll;	
+	overflow: scroll;
 }
 
 .error-dialog
@@ -282,7 +282,7 @@ a.button
 
 /* Custom theme for the editor */
 
-.ace-custom.ace_editor 
+.ace-custom.ace_editor
 {
   /* Editing was formerly font-size:90%, with gray background */
   font-family:"Inconsolata",monospace;
@@ -411,7 +411,7 @@ a.button
 
 .ace-custom .ace_line .ace_invalid {
   background-color: rgb(153, 0, 0);
-  color: white;
+  color: black;
 }
 
 .ace-custom .ace_marker-layer .ace_selection {

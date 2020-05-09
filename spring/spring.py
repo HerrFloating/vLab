@@ -5,14 +5,13 @@ import random
 k1 = pi**2
 M1 = 0
 m = 0.07
-eq = vector(0,-8,0)
 t = 0
 dt = 1e-3
-eq.y = -8-((M1+m/2)*g/k1)
 g = 9.8
+eq = vector(0,-8-((M1+m/2)*g/k1),0)
 
 """background setting"""
-scene1 = canvas(center = vector(0,-8,0),background = color.white)
+scene1 = canvas(center = vector(0,-8,0),background = color.white,width = 800 , height = 500)
 mass = box(pos = eq,axis = vector(1,0,0),size=vector(0.01,0.01,0.01),velocity = vector(0,0,0),visible = False,pickable = False)
 """Masses"""
 mass1e=cylinder(pos = vector(-5,-19,0),axis=vector(0,-1.5,0),radius = 0.8,color = vector(229/255,137/255,57/255))
@@ -50,7 +49,7 @@ t4.visible = False
 del mass4e
 del t4
 mass4.pos.z = 0
-mass4.mass = random.uniform(19.9,20.1)
+mass4.mass = random.uniform(19.9,20.1)/1000
 mass5e=cylinder(pos = vector(-13,-19,0),axis=vector(0,-0.7,0),radius = 0.8,color = vector(229/255,57/255,57/255))
 t5 = text(pos = mass5e.pos + vector(0,-0.7/2,1),color=color.black,text = '10 g',height = 0.3 , depth=0)
 mass5 = compound([mass5e,t5])
@@ -59,7 +58,7 @@ t5.visible = False
 del mass5e
 del t5
 mass5.pos.z = 0
-mass5.mass = random.uniform(9.9,10.1)
+mass5.mass = random.uniform(9.9,10.1)/1000
 mass1.pos=vector(-5,-19.75,0)
 mass2.pos=vector(-7,-19.75,0)
 mass3.pos=vector(-9,-19.75,0)
@@ -125,7 +124,7 @@ b2 = box(pos=vector(2.4,-1.9-.56+1.03,0.1),axis=vector(1,0,0),size=vector(0.6,0.
 b3 = box(pos=vector(2.7,-1.9-.56+0.53,0.1),axis=vector(1,0,0),size=vector(0.1,0.1,0.1),color=vector(178/255,62/255,62/255),pickable = False)
 b4 = box(pos=vector(1.3,-1.9-.56+0.53,0.1),axis=vector(1,0,0),size=vector(0.1,0.1,0.1),color=vector(178/255,62/255,62/255),pickable = False)
 ground = box(pos=vector(4.2,-18.5,0),axis = vector(1,0,0),size=vector(14,0.8,0.1),color=vector(229/255,229/255,229/255),pickable = False)
-spring = helix(pos = vector(0,0,0) , axis = vector(0,-8,0)   , radius = 0.8, coils = 15 , color = color.gray(0.1),thickness=0.07 )
+spring = helix(pos = vector(0,0,0) , axis = eq   , radius = 0.8, coils = 15 , color = color.gray(0.1),thickness=0.07 )
 S = compound([paye1,sh,s,pich1,roof,sh1,s1,pich2,roof1,E1,E2,b1,b2,b3,b4,ground])
 S.pickable = False
 paye1.visible = False
@@ -219,9 +218,9 @@ def Reset(c):
     mass3.pos=vector(-9,-19.75,0)
     mass4.pos=vector(-11,-19.75,0)
     mass5.pos=vector(-13,-19.75,0)
-    mass = box(pos = eq,axis = vector(1,0,0),size=vector(0.01,0.01,0.01),velocity = vector(0,0,0),visible = False)
     eq = vector(0,-8-((M1+m/2)*g/k1),0)
-    spring.axis = vector(0,eq.y,0)
+    mass = box(pos = eq,axis = vector(1,0,0),size=vector(0.0001,0.00001,0.0001),velocity = vector(0,0,0),visible = False)
+    spring.axis = mass.pos
     mass.velocity = vector(0,0,0)
     v.visible = False
     W1.text = 'Elapsed time : 0'
@@ -276,7 +275,7 @@ while True:
     rate(1e3)
     if running :
         mass.pos = mass.velocity*dt + mass.pos
-        mass.velocity = ((k1/(M1+m/3))*(eq - mass.pos) - g*vector(0,1,0))* dt + mass.velocity
+        mass.velocity = ((k1/(M1+m/3))*(eq - mass.pos))* dt + mass.velocity
         spring.axis = mass.pos
         t = t + dt
         v.visible = True
